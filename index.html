@@ -61,7 +61,9 @@
         keyURL = keyURL.replace('YOUR_API_KEY', key);
         alert(keyURL);
         fetch(keyURL)
-          .then(result => result.json())
+          .then(result => {
+            return result.json();
+          })
         document.getElementById("statspage").InnerHTML = result;
       }
     </script>
