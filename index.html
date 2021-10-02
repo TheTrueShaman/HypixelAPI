@@ -38,6 +38,12 @@
     </style>
   </head>
   <body>
+    <script>
+    function getSearch() {
+        alert(window.location.search);
+    }
+    </script>
+    
     <div class="header">
       <h1>Bad Skyblock API</h1>
     </div>
@@ -48,7 +54,7 @@
         <input name="ign" type="search" placeholder="Enter username" autofocus required>
         <p>Your API key:</p>
         <input name="key" type="search" placeholder="Enter your API key" autofocus required>
-        <button type="submit">Show stats</button>
+        <button type="button" onclick="getSearch();">>Show stats</button>
       </form>
     </div>
     
