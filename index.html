@@ -55,8 +55,14 @@
         }
       }
       
-      function getStats(user, key) {
-        alert(user + ", " + key);
+      async function getData(url, key) {
+        const response = await fetch(url, key);
+        var data = await response.json();
+        return data;
+      }
+      
+      function getStats(username, key) {
+        getData('https://api.hypixel.net/', key);
       }
     </script>
     
