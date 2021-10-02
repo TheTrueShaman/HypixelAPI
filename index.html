@@ -59,6 +59,7 @@
         alert(username + ", " + key);
         let keyURL = "https://api.hypixel.net/key?key=YOUR_API_KEY"
         keyURL.replace('YOUR_API_KEY', key);
+        alert(keyURL);
         fetch("https://api.hypixel.net/key?key=YOUR_API_KEY")
           .then(result => result.json())
         document.getElementById("statspage").InnerHTML = result;
