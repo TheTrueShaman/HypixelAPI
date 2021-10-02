@@ -55,18 +55,12 @@
         }
       }
       
-      async function getData(url) {
-        let response = await fetch(url);
-        let data = await response.json();
-        return data;
-      }
-      
       function getStats(username, key) {
         let keyURL = new URL('https://api.hypixel.net/key');
         keyURL.searchParams.set('key', key);
         console.log(keyURL);
 
-        const keything = fetch(keyURL);
+        const keything = fetch(keyURL)
           .then((response) => response.json())
 
         const printAddress = async () => {
