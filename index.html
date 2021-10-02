@@ -49,14 +49,13 @@
           document.getElementById("mainpage").style.display = "none";
           var searches = window.location.search;
           var poskey = searches.search("&key=");
-          alert(searches.slice(5,poskey));
-          getStats()
+          getStats(searches.slice(5,poskey), searches.slice(poskey+5,))
         } else {
           document.getElementById("statspage").style.display = "none";
         }
       }
       
-      function getStats() {
+      function getStats(user, key) {
       
       }
     </script>
