@@ -37,8 +37,13 @@
 
     </style>
   </head>
-  <body>
+  <body onload="getURL()">
     <script>
+      function getURL() {
+        if (window.location.search) {
+          alert(window.location.search);
+        }
+      }
     </script>
     
     <div class="header">
