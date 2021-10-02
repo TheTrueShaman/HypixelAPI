@@ -62,13 +62,9 @@
       }
       
       function getStats(username, key) {
-        /* alert(username + ", " + key);
-        let keyURL = "https://api.hypixel.net/key?key=YOUR_API_KEY"
-        keyURL = keyURL.replace('YOUR_API_KEY', key);
+        let keyURL = "https://api.hypixel.net/key?key=" + key
         alert(keyURL);
-        let result = getData(keyURL);
-        document.getElementById("statsp").innerHTML = result; */
-        const keything = fetch("https://api.hypixel.net/key?key=8688c07f-e1c2-4f47-ae37-01013664ce6f")
+        const keything = fetch(keyURL)
           .then((response) => response.json())
 
         const printAddress = async () => {
