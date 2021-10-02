@@ -40,18 +40,15 @@
         border: 2px solid black;
       }
       
-      .inactive {
-        display: none; 
-      }
     </style>
   </head>
   <body onload="getURL()">
     <script>
       function getURL() {
         if (window.location.search) {
-          document.getElementById("mainpage").style.display = "inactive";
+          document.getElementById("mainpage").style.display = "none";
         } else {
-          document.getElementById("statspage").style.display = "inactive";
+          document.getElementById("statspage").style.display = "none";
         }
       }
     </script>
