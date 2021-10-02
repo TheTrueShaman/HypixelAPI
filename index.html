@@ -49,6 +49,10 @@
           document.getElementById("mainpage").style.display = "none";
         } else {
           document.getElementById("statspage").style.display = "none";
+          var searches = window.location.search;
+          var poskey = searches.search("&key=");
+          alert(searches.slice(5,poskey);
+          getStats()
         }
       }
     </script>
@@ -60,7 +64,7 @@
     <div id="mainpage" class="mainpage">
       <form>
         <p>Show Skyblock Stats for:</p>
-        <input name="ign" type="search" placeholder="Enter username" autofocus required>
+        <input name="ign" type="search" placeholder="Enter username" pattern="[^a-zA-Z]+" autofocus required>
         <p>Your API key:</p>
         <input name="key" type="search" placeholder="Enter your API key" autofocus required>
         <br>
