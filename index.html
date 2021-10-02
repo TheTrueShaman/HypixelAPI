@@ -62,7 +62,8 @@
       }
       
       function getStats(username, key) {
-        let keyURL = new URL("https://api.hypixel.net/key?key=" + key);
+        let keyURL = new URL('https://api.hypixel.net/key');
+        keyURL.searchParams.set('key', key);
 
         const keything = fetch(keyURL)
           .then((response) => response.json())
