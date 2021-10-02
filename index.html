@@ -63,7 +63,7 @@
       
       function getStats(username, key) {
         let keyURL = "https://api.hypixel.net/key?key=" + key
-        alert(keyURL);
+
         const keything = fetch(keyURL)
           .then((response) => response.json())
 
