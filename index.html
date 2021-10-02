@@ -55,15 +55,14 @@
         }
       }
       
-      async function getData(url, key) {
-        const response = await fetch(url, key);
-        var data = await response.json();
-        return data;
-      }
-      
       function getStats(username, key) {
         alert(username + ", " + key);
-        getData('https://api.hypixel.net/', key);
+        const keyURL = "https://api.hypixel.net/key?key=YOUR_API_KEY"
+        keyURL.replace('YOUR_API_KEY', key);
+        fetch("https://api.hypixel.net/key?key=YOUR_API_KEY")
+          .then(result => result.json())
+          .then(const a = result);
+        document.getElementById("statspage").InnerHTML = a;
       }
     </script>
     
