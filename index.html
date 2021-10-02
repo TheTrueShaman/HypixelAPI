@@ -15,7 +15,9 @@
         margin: 20px;
       }
       
-      .statspage {}
+      .statspage {
+        margin: 20px;
+      }
       
       .header {
         padding: 20px;
@@ -37,14 +39,19 @@
       input:valid {
         border: 2px solid black;
       }
-
+      
+      .inactive {
+        display: none; 
+      }
     </style>
   </head>
   <body onload="getURL()">
     <script>
       function getURL() {
         if (window.location.search) {
-          alert(window.location.search);
+          document.getElementById("mainpage").style.display = "inactive";
+        } else {
+          document.getElementById("statspage").style.display = "inactive";
         }
       }
     </script>
@@ -53,7 +60,7 @@
       <h1>Bad Skyblock API</h1>
     </div>
 
-    <div class="mainpage">
+    <div id="mainpage" class="mainpage">
       <form>
         <p>Show Skyblock Stats for:</p>
         <input name="ign" type="search" placeholder="Enter username" autofocus required>
@@ -64,5 +71,8 @@
       </form>
     </div>
     
+    <div id="statspage" class="statspage">
+      <p>The statspage... at least, it will be eventually</p>
+    </div>
   </body>
 </html>
