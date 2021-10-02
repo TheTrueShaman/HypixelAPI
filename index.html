@@ -74,7 +74,7 @@
         const printAddress = async () => {
           const a = await keything;
           console.log(a);
-          document.getElementById("statsp").innerHTML = a.toString();
+          document.getElementById("statsp").innerHTML = JSON.stringify(a, null, 4);
         };
 
 printAddress();
