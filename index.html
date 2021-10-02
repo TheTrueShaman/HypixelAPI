@@ -49,10 +49,16 @@
           document.getElementById("mainpage").style.display = "none";
           var searches = window.location.search;
           var poskey = searches.search("&key=");
-          getStats(searches.slice(5,poskey), searches.slice(poskey+5,))
+          getStats(searches.slice(5,poskey), searches.slice(poskey+5,));
         } else {
           document.getElementById("statspage").style.display = "none";
         }
+      }
+      
+      async function getData(url) {
+        let response = await fetch(url);
+        let data = await response.json()
+        return data;
       }
       
       function getStats(username, key) {
@@ -60,10 +66,7 @@
         let keyURL = "https://api.hypixel.net/key?key=YOUR_API_KEY"
         keyURL = keyURL.replace('YOUR_API_KEY', key);
         alert(keyURL);
-        fetch(keyURL)
-          .then(result => {
-            return result.json();
-          })
+        result = getData(keyURL);
         document.getElementById("statspage").InnerHTML = result;
       }
     </script>
