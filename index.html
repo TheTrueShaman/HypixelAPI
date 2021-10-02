@@ -66,8 +66,8 @@
         let keyURL = "https://api.hypixel.net/key?key=YOUR_API_KEY"
         keyURL = keyURL.replace('YOUR_API_KEY', key);
         alert(keyURL);
-        result = getData(keyURL);
-        document.getElementById("statspage").InnerHTML = result;
+        let result = getData(keyURL);
+        document.getElementById("statsp").InnerHTML = result;
       }
     </script>
     
@@ -87,7 +87,7 @@
     </div>
     
     <div id="statspage" class="statspage">
-      <p>The statspage... at least, it will be eventually</p>
+      <p id="statsp">The statspage... at least, it will be eventually</p>
     </div>
   </body>
 </html>
