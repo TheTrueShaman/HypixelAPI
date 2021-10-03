@@ -63,7 +63,7 @@
         const keything = fetch(keyURL)
           .then((response) => response.json())
 
-        const printAddress = async () => {
+        const printResponse = async () => {
           const a = await keything;
           console.log(a);
           document.getElementById("statsp").innerHTML = JSON.stringify(a, null, 4);
