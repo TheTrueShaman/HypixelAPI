@@ -62,7 +62,7 @@
         const uuidparsed = await JSON.parse(uuidjson);
         if (uuidparsed.error) {
           console.log(uuidparsed.error);
-          break getStats();
+          return
         }
         
         let keyURL = new URL('https://api.hypixel.net/key');
