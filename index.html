@@ -58,8 +58,11 @@
       async function getStats(username, key) {
         let uuidURL = 'https://api.ashcon.app/mojang/v2/user/' + username;
         const uuidData = await fetch(uuidURL);
+        console.log(uuidData);
         const uuidjson = await uuidData.json();
+        console.log(uuidjson);
         const uuidparsed = await JSON.parse(uuidjson);
+        console.log(uuidparsed);
         if (uuidparsed.error) {
           console.log(uuidparsed.error);
           return
