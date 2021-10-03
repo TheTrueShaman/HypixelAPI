@@ -29,11 +29,11 @@
       }
       
       input:invalid {
-        border: 2px dashed red;
+        border: 2px dashed black;
       }
 
       input:invalid:required {
-        background-image: 2px dashed red;
+        border: 2px dashed red;
       }
 
       input:valid {
@@ -59,6 +59,7 @@
         let uuidURL = 'https://api.mojang.com/users/profiles/minecraft/' + username + '?';
         console.log(uuidURL);
         const uuidData = await fetch(uuidURL, {mode: 'no-cors'});
+        console.log(uuidData);
         const uuidjson = await uuidData.json();
         console.log(uuidjson);
         
