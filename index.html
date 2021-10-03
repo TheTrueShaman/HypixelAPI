@@ -69,19 +69,18 @@
         let keyURL = new URL('https://api.hypixel.net/key');
         keyURL.searchParams.set('key', key);
         const keydata = await fetch(keyURL);
-        if (keydata.status == 200) {  
-          const keyjson = await keydata.json();
-          console.log(keyjson);
-          document.getElementById("statsuseridkey").innerHTML = "Username: " + username + ", UUID: " + uuidjson.uuid + ", Key: " + keyjson.record.key;
-        } else if (keydata.status == 403) {
+        if (keydata.status == 403) {
           console.log("Invalid API key.");
           document.getElementById("statsuseridkey").innerHTML = "Invalid API key.";
           return 0;
-        } else {
+        } else if (keydata.status == 429) {
           console.log("API key throttle");
           document.getElementById("statsuseridkey").innerHTML = "API key throttle.";
           return 0;
         } 
+        const keyjson = await keydata.json();
+        console.log(keyjson);
+        document.getElementById("statsuseridkey").innerHTML = "Username: " + username + ", UUID: " + uuidjson.uuid + ", Key: " + keyjson.record.key;
       }
     </script>
     
