@@ -61,7 +61,7 @@
         if (uuidData.ok == true) {
           const uuidjson = await uuidData.json();
         } else {
-          console.log("Not a username..."); 
+          console.log("Invalid Minecraft Username."); 
           document.getElementById("statsuseridkey").innerHTML = "Invalid Username";
           return 0;
         }
@@ -70,8 +70,17 @@
         let keyURL = new URL('https://api.hypixel.net/key');
         keyURL.searchParams.set('key', key);
         const keydata = await fetch(keyURL);
-        console.log(keydata);
-        const keyjson = await keydata.json();
+        if (keydata.status == 200) {  
+          const keyjson = await keydata.json();
+        } else if (keydata.status == 403) {
+          console.log("Invalid API key.");
+          document.getElementById("statsuseridkey").innerHTML = "Invalid API key.";
+          return 0;
+        } else {
+          console.log("API key throttle");
+          document.getElementById("statsuseridkey").innerHTML = "API key throttle.";
+          return 0;
+        } 
       }
     </script>
     
@@ -92,7 +101,6 @@
     
     <div id="statspage" class="statspage">
       <p id="statsuseridkey"></p>
-      <p id="statsp">The statspage... at least, it will be eventually</p>
     </div>
   </body>
 </html>
