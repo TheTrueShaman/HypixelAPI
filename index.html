@@ -57,18 +57,19 @@
       
       async function getStats(username, key) {
         let uuidURL = 'https://api.ashcon.app/mojang/v2/user/' + username;
-        console.log(uuidURL);
         const uuidData = await fetch(uuidURL);
         const uuidjson = await uuidData.json();
-        console.log(uuidjson);
+        const uuidparsed = await JSON.parse(uuidjson);
+        if (uuidparsed.error) {
+          console.log(uuidparsed.error);
+          break getStats();
+        }
         
         let keyURL = new URL('https://api.hypixel.net/key');
         keyURL.searchParams.set('key', key);
 
         const keydata = await fetch(keyURL);
         const keyjson = await keydata.json();
-        
-        console.log(keyjson);
       }
     </script>
     
