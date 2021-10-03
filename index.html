@@ -56,14 +56,19 @@
       }
       
       async function getStats(username, key) {
+        let uuidURL = 'https://api.mojang.com/users/profiles/minecraft/' + username + '?';
+        console.log(uuidURL);
+        const uuidData = await fetch(uuidURL);
+        const uuidjson = await uuidData.json();
+        console.log(uuidjson);
+        
         let keyURL = new URL('https://api.hypixel.net/key');
         keyURL.searchParams.set('key', key);
-        console.log(keyURL);
 
         const keydata = await fetch(keyURL);
-        const kdjson = await keydata.json();
+        const keyjson = await keydata.json();
         
-        console.log(kdjson);
+        console.log(keyjson);
       }
     </script>
     
