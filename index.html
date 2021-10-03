@@ -71,7 +71,8 @@
         const keydata = await fetch(keyURL);
         if (keydata.status == 200) {  
           const keyjson = await keydata.json();
-          document.getElementById("statsuseridkey").innerHTML = "Username: " + username + ", UUID: " + uuidjson.uuid + ", Username: " + keyjson.key;
+          console.log(keyjson);
+          document.getElementById("statsuseridkey").innerHTML = "Username: " + username + ", UUID: " + uuidjson.uuid + ", Key: " + keyjson.key;
         } else if (keydata.status == 403) {
           console.log("Invalid API key.");
           document.getElementById("statsuseridkey").innerHTML = "Invalid API key.";
