@@ -59,7 +59,7 @@
         let uuidURL = 'https://api.ashcon.app/mojang/v2/user/' + username;
         const uuidData = await fetch(uuidURL);
         console.log(uuidData);
-        if (uuidData == true) {
+        if (uuidData.ok == true) {
           const uuidjson = await uuidData.json();
           console.log(uuidjson);
           const uuidparsed = await JSON.parse(uuidjson);
