@@ -58,13 +58,12 @@
       async function getStats(username, key) {
         let uuidURL = 'https://api.ashcon.app/mojang/v2/user/' + username;
         const uuidData = await fetch(uuidURL);
-        if (uuidData.ok == true) {
-          const uuidjson = await uuidData.json();
-        } else {
+        if (uuidData.ok == false) {
           console.log("Invalid Minecraft Username."); 
           document.getElementById("statsuseridkey").innerHTML = "Invalid Username";
           return 0;
-        }
+        } 
+        const uuidjson = await uuidData.json();
         
         
         let keyURL = new URL('https://api.hypixel.net/key');
