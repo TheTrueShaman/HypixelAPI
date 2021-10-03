@@ -58,20 +58,19 @@
       async function getStats(username, key) {
         let uuidURL = 'https://api.ashcon.app/mojang/v2/user/' + username;
         const uuidData = await fetch(uuidURL);
-        console.log(uuidData);
         if (uuidData.ok == true) {
-          console.log(uuidData.ok);
           const uuidjson = await uuidData.json();
-          console.log(uuidjson);
         } else {
           console.log("Not a username..."); 
+          document.getElementById("statsuseridkey").innerHTML = "Invalid Username";
           return 0;
         }
         
+        
         let keyURL = new URL('https://api.hypixel.net/key');
         keyURL.searchParams.set('key', key);
-
         const keydata = await fetch(keyURL);
+        console.log(keydata);
         const keyjson = await keydata.json();
       }
     </script>
@@ -92,6 +91,7 @@
     </div>
     
     <div id="statspage" class="statspage">
+      <p id="statsuseridkey"></p>
       <p id="statsp">The statspage... at least, it will be eventually</p>
     </div>
   </body>
