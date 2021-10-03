@@ -58,7 +58,7 @@
       async function getStats(username, key) {
         let uuidURL = 'https://api.mojang.com/users/profiles/minecraft/' + username + '?';
         console.log(uuidURL);
-        const uuidData = await fetch(uuidURL);
+        const uuidData = await fetch(uuidURL, {mode: 'no-cors'});
         const uuidjson = await uuidData.json();
         console.log(uuidjson);
         
