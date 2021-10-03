@@ -60,10 +60,9 @@
         const uuidData = await fetch(uuidURL);
         console.log(uuidData);
         if (uuidData.ok == true) {
+          console.log(uuidData.ok);
           const uuidjson = await uuidData.json();
           console.log(uuidjson);
-          const uuidparsed = await JSON.parse(uuidjson);
-          console.log(uuidparsed);
         } else {
           console.log("Not a username..."); 
           return 0;
