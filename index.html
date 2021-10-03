@@ -60,15 +60,10 @@
         keyURL.searchParams.set('key', key);
         console.log(keyURL);
 
-        const keything = fetch(keyURL)
-          .then((response) => response.json())
-
-        const printResponse = async () => {
-          const a = await keything;
-          console.log(a);
-          document.getElementById("statsp").innerHTML = JSON.stringify(a, null, 4);
-        };
+        const keydata = await fetch(keyURL);
+        const kdjson = await keydata.json();
         
+        console.log(kdjson);
       }
     </script>
     
