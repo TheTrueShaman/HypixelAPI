@@ -64,7 +64,7 @@
         } 
         const uuidjson = await uuidData.json();
         let uuid = uuidjson.uuid;
-        
+        console.log(typeof uuid);
         
         let keyURL = new URL('https://api.hypixel.net/key');
         keyURL.searchParams.set('key', key);
