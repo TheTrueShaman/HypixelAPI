@@ -60,10 +60,10 @@
         const uuidData = await fetch(uuidURL);
         if (uuidData.ok == false) {
           console.log("Invalid Minecraft Username."); 
-          document.getElementById("statsuseridkey").innerHTML = "Invalid Username";
           return 0;
         } 
         const uuidjson = await uuidData.json();
+        let uuid = uuidjson.uuid;
         
         
         let keyURL = new URL('https://api.hypixel.net/key');
@@ -71,16 +71,18 @@
         const keydata = await fetch(keyURL);
         if (keydata.status == 403) {
           console.log("Invalid API key.");
-          document.getElementById("statsuseridkey").innerHTML = "Invalid API key.";
           return 0;
         } else if (keydata.status == 429) {
           console.log("API key throttle");
-          document.getElementById("statsuseridkey").innerHTML = "API key throttle.";
           return 0;
         } 
         const keyjson = await keydata.json();
         console.log(keyjson);
-        document.getElementById("statsuseridkey").innerHTML = "Username: " + username + ", UUID: " + uuidjson.uuid + ", Key: " + keyjson.record.key;
+        
+        let profileURL = new URL('https://api.hypixel.net/skyblock/profiles')
+        profileURL.searchParams.set('key', key);
+        profileURL.searchParams.set('uuid', uuid);
+        console.log(profileURL);
       }
     </script>
     
