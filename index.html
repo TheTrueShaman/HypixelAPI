@@ -98,6 +98,8 @@
         } 
         const profilejson = await profiledata.json();
         console.log(profilejson);
+        
+        console.log(profilejson.profiles[0].members[uuid]);
         let profileamount = profilejson.profiles.length;
         let mostrecent = 0;
         let recentprofilename = "";
