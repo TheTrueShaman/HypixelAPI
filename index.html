@@ -66,6 +66,7 @@
         let uuid = uuidjson.uuid;
         uuid = uuid.replace(/-/g, '');
         
+        
         let keyURL = new URL('https://api.hypixel.net/key');
         keyURL.searchParams.set('key', key);
         const keydata = await fetch(keyURL);
@@ -75,8 +76,7 @@
         } else if (keydata.status == 429) {
           console.log("API key throttle.");
           return 0;
-        } 
-        const keyjson = await keydata.json();
+        }
 
         
         let profileURL = new URL('https://api.hypixel.net/skyblock/profiles')
@@ -130,8 +130,8 @@
         console.log(farming_level);
       }
       
-      async function getStats() {
-       
+      async function getStats(username, key, uuid, uuidjson, profilenum, profilejson) {
+        
       }
     </script>
     
