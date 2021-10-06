@@ -98,6 +98,9 @@
         } 
         const profilejson = await profiledata.json();
         console.log(profilejson);
+        if (profilejson.profiles == null) {
+          return 0; 
+        }
         
         let profileamount = profilejson.profiles.length;
         let mostrecent = 0;
