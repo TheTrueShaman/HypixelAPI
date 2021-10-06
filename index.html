@@ -98,6 +98,16 @@
         } 
         const profilejson = await profiledata.json();
         console.log(profilejson);
+        let profileamount = profilejson.profiles.length;
+        let mostrecent = 0;
+        let recentprofilename = "";
+        for (let i = 0; i < profileamount; i++) {
+          if (profilejson.profiles[i].members[uuid].last_save > mostrecent) {
+            mostrecent = profilejson.profiles[i].members[uuid].last_save;
+            recentprofilename = profilejson.profiles[i].cute_name;
+          }
+        console.log(recentprofilename);
+        }
       }
     </script>
     
