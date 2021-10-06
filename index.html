@@ -64,6 +64,7 @@
         } 
         const uuidjson = await uuidData.json();
         let uuid = uuidjson.uuid;
+        uuid = uuid.replace('-', '')
         console.log(uuid);
         
         let keyURL = new URL('https://api.hypixel.net/key');
@@ -99,7 +100,6 @@
         const profilejson = await profiledata.json();
         console.log(profilejson);
         
-        console.log(profilejson.profiles[0].members[uuid]);
         let profileamount = profilejson.profiles.length;
         let mostrecent = 0;
         let recentprofilename = "";
