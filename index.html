@@ -73,16 +73,30 @@
           console.log("Invalid API key.");
           return 0;
         } else if (keydata.status == 429) {
-          console.log("API key throttle");
+          console.log("API key throttle.");
           return 0;
         } 
         const keyjson = await keydata.json();
-        console.log(keyjson);
+
         
         let profileURL = new URL('https://api.hypixel.net/skyblock/profiles')
         profileURL.searchParams.set('key', key);
         profileURL.searchParams.set('uuid', uuid);
-        console.log(profileURL);
+        const profiledata = await fetch(profileURL);
+        if (profiledata.status == 400) {
+          console.log("Missing one or more fields.");
+          return 0;
+        } else if (profiledata.status == 403) {
+          console.log("Invalid API key.");
+          return 0;
+        } else if (profiledata.status == 422) {
+          console.log("Malformed UUID.");
+          return 0;
+        } else if (profiledata.status == 429) {
+          console.log("API key throttle");
+          return 0;
+        } 
+        const profilejson = await profiledata.json();
       }
     </script>
     
