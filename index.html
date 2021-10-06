@@ -117,7 +117,7 @@
         
         let x = 0
         while (x < 60) {
-          if (profilejson.profiles[recentprofilenum].members[uuid].experience_skill_farming < skillsjson.collections.farming.levels[x].totalExpRequired) {
+          if (profilejson.profiles[recentprofilenum].members[uuid].experience_skill_farming < skillsjson.collections.FARMING.levels[x].totalExpRequired) {
             break;
           } else {
             x += 1; 
