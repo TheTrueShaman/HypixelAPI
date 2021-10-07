@@ -120,8 +120,8 @@
         let x = 0
         let SKILL = skill.toUpperCase();
         let experience_skill = "experience_skill_" + skill;
-        while (x < skillsjson.collections.SKILL.levels.length) {
-          if (profilejson.profiles[profilenum].members[uuid].experience_skill < skillsjson.collections.SKILL.levels[x].totalExpRequired) {
+        while (x < skillsjson.collections[SKILL].levels.length) {
+          if (profilejson.profiles[profilenum].members[uuid][experience_skill] < skillsjson.collections[SKILL].levels[x].totalExpRequired) {
             break;
           } else {
             x += 1; 
