@@ -116,6 +116,17 @@
         getStats(username, key, uuid, uuidjson, recentprofilenum, profilejson);
       }
        
+      function getLevel(SKILL, experience_skill, profilejson, skillsjson, profilenum, uuid) {
+        let x = 0
+        while (x < skillsjson.collections.SKILL.levels.length) {
+          if (profilejson.profiles[profilenum].members[uuid].experience_skill < skillsjson.collections.SKILL.levels[x].totalExpRequired) {
+            break;
+          } else {
+            x += 1; 
+          }
+        }
+        return x;
+      }
       
       async function getStats(username, key, uuid, uuidjson, profilenum, profilejson) {
         let skyblockskill = await fetch("https://api.hypixel.net/resources/skyblock/skills");
@@ -131,6 +142,8 @@
           }
         }
         let farming_level = x;
+        console.log(farming_level);
+        let farming_level = getLevel("FARMING", "experience_skill_farming", profilejson, skillsjson, profilenum, uuid);
         console.log(farming_level);
       }
     </script>
