@@ -116,8 +116,10 @@
         getStats(username, key, uuid, uuidjson, recentprofilenum, profilejson);
       }
        
-      function getLevel(SKILL, experience_skill, profilejson, skillsjson, profilenum, uuid) {
+      function getLevel(skill, profilejson, skillsjson, profilenum, uuid) {
         let x = 0
+        let SKILL = skill.toUpperCase();
+        let experience_skill = "experience_skill_" + skill;
         while (x < skillsjson.collections.SKILL.levels.length) {
           if (profilejson.profiles[profilenum].members[uuid].experience_skill < skillsjson.collections.SKILL.levels[x].totalExpRequired) {
             break;
@@ -146,7 +148,8 @@
         console.log(skillsjson.collections.FARMING.levels.length);
         let A = 'FARMING';
         console.log(skillsjson.collections[A]);
-        console.log(skillsjson.collections.A);
+        let farming_level('farming', profilejson, skillsjson, profilenum, uuid);
+        console.log(farming_level);
       }
     </script>
     
