@@ -132,9 +132,9 @@
       async function getStats(username, key, uuid, uuidjson, profilenum, profilejson) {
         let skyblockskill = await fetch("https://api.hypixel.net/resources/skyblock/skills");
         let skillsjson = await skyblockskill.json();
-        console.log(skillsjson);
         
-       
+        
+        console.log(profilejson);
         let farming_level = getLevel('farming', profilejson, skillsjson, profilenum, uuid);
         let mining_level = getLevel('mining', profilejson, skillsjson, profilenum, uuid);
         let combat_level = getLevel('combat', profilejson, skillsjson, profilenum, uuid);
@@ -151,6 +151,9 @@
         console.log(enchanting_level);
         console.log(alchemy_level);
         console.log(taming_level);
+        
+        var var_php = "hi";
+        var var_js = '<?php echo $var_php; ?>';
       }
     </script>
     
