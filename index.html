@@ -152,10 +152,12 @@
         console.log(alchemy_level);
         console.log(taming_level);
         
-        var var_php = "hi";
-        var var_js = '<?php echo $var_php; ?>';
+        var result = "If this is displayed, it was a success";
       }
     </script>
+    <?php
+      echo "<script>document.writeln(result);</script>";
+    ?>
     
     <div class="header">
       <h1>Bad Skyblock API</h1>
