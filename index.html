@@ -155,6 +155,7 @@
         console.log(profilejson.profiles[profilenum].members["4a13f41bf0c84dd1a068d57c0c3745c5"].inv_contents.data);
         let inventoryunbase64 = atob(profilejson.profiles[profilenum].members["4a13f41bf0c84dd1a068d57c0c3745c5"].inv_contents.data)
         console.log(inventoryunbase64);
+        comsole.log(typeof inventoryunbase64);
         const n = Uint8Array.from(inventoryunbase64);
         console.log(n);
         a = new Zlib.Gunzip(n).decompress();
