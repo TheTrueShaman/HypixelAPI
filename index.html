@@ -154,11 +154,12 @@
         console.log(profilejson.profiles[profilenum].members["4a13f41bf0c84dd1a068d57c0c3745c5"].inv_contents.data);
         let inventoryunbase64 = atob(profilejson.profiles[profilenum].members["4a13f41bf0c84dd1a068d57c0c3745c5"].inv_contents.data)
         console.log(inventoryunbase64);
-        const nbt = require('prismarine-nbt');
+        
+        npm i prismarine-nbt
 
-        nbt.parse(inventoryunbase64, (err, dat) => {
+        prismarine-nbt.parse(inventoryunbase64, (err, dat) => {
           if(err) throw err;
-          console.log(JSON.stringify(nbt.simplify(dat)));
+          console.log(JSON.stringify(prismarine-nbt.simplify(dat)));
         });
       }
     </script>
