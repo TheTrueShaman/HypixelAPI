@@ -162,7 +162,7 @@
         console.log(a);
         **/
         try {
-          const n=Uint8Array.from(atob(t),t=>t.charCodeAt(0)),a=new Zlib.Gunzip(n).decompress(),console.log(a);
+          const n=Uint8Array.from(atob(t),t=>t.charCodeAt(0)),a=new Zlib.Gunzip(n).decompress();
         } catch(error) {
           console.error(error);
        }
