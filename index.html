@@ -42,6 +42,7 @@
     </style>
   </head>
   <body onload="getURL()">
+    <script src="requirejs.org/docs/release/2.3.6/minified/require.js"></script>
     <script>
       function getURL() {
         if (window.location.search) {
@@ -155,11 +156,11 @@
         let inventoryunbase64 = atob(profilejson.profiles[profilenum].members["4a13f41bf0c84dd1a068d57c0c3745c5"].inv_contents.data)
         console.log(inventoryunbase64);
         
-        npm i prismarine-nbt
+        var nbt = require('prismarine-nbt');
 
-        prismarine-nbt.parse(inventoryunbase64, (err, dat) => {
+        nbt.parse(inventoryunbase64, (err, dat) => {
           if(err) throw err;
-          console.log(JSON.stringify(prismarine-nbt.simplify(dat)));
+          console.log(JSON.stringify(nbt.simplify(dat)));
         });
       }
     </script>
