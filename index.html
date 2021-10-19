@@ -131,7 +131,10 @@
       }
       
       function decode_utf8(s) {
-        return decodeURIComponent(escape(s));
+        var decoder = new TextDecoder('utf-8'),
+            decodedMessage;
+        decodedMessage = decoder.decode(message.data);
+        return decodedMessage;
       }
       
       async function getStats(username, key, uuid, uuidjson, profilenum, profilejson) {
