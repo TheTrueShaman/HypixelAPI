@@ -155,24 +155,16 @@
         
         
         console.log(profilejson);
-        var Levels = {};
-        Levels["farming"] = getLevel('farming', profilejson, skillsjson, profilenum, uuid);
-        let mining_level = getLevel('mining', profilejson, skillsjson, profilenum, uuid);
-        let combat_level = getLevel('combat', profilejson, skillsjson, profilenum, uuid);
-        let foraging_level = getLevel('foraging', profilejson, skillsjson, profilenum, uuid);
-        let fishing_level = getLevel('fishing', profilejson, skillsjson, profilenum, uuid);
-        let enchanting_level = getLevel('enchanting', profilejson, skillsjson, profilenum, uuid);
-        let alchemy_level = getLevel('alchemy', profilejson, skillsjson, profilenum, uuid);
-        let taming_level = getLevel('taming', profilejson, skillsjson, profilenum, uuid);
-        console.log(Levels);
-        console.log(mining_level);
-        console.log(combat_level);
-        console.log(foraging_level);
-        console.log(fishing_level);
-        console.log(enchanting_level);
-        console.log(alchemy_level);
-        console.log(taming_level);
-        console.log(profilejson.profiles[profilenum].members["4a13f41bf0c84dd1a068d57c0c3745c5"].inv_contents.data);
+        var levels = {"skills":{}, "catacombs":{}};
+        levels["skills"]["farming"] = getLevel('farming', profilejson, skillsjson, profilenum, uuid);
+        levels["skills"]["mining"] = getLevel('mining', profilejson, skillsjson, profilenum, uuid);
+        levels["skills"]["combat"] = getLevel('combat', profilejson, skillsjson, profilenum, uuid);
+        levels["skills"]["foraging"] = getLevel('foraging', profilejson, skillsjson, profilenum, uuid);
+        levels["skills"]["fishing"] = getLevel('fishing', profilejson, skillsjson, profilenum, uuid);
+        levels["skills"]["enchanting"] = getLevel('enchanting', profilejson, skillsjson, profilenum, uuid);
+        levels["skills"]["alchemy"] = getLevel('alchemy', profilejson, skillsjson, profilenum, uuid);
+        levels["skills"]["taming"] = getLevel('taming', profilejson, skillsjson, profilenum, uuid);
+        console.log(levels);
         let nbtinventory = profilejson.profiles[profilenum].members["4a13f41bf0c84dd1a068d57c0c3745c5"].inv_contents.data;
         let json_inventory = convertNbtToJson(nbtinventory);
         console.log(json_inventory);
