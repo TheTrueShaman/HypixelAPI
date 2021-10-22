@@ -43,6 +43,7 @@
   </head>
   <body onload="getURL()">
     <script src="nbt.js"></script>
+    <script src="writedoc.js"></script>
     <script>
       function getURL() {
         if (window.location.search) {
@@ -154,7 +155,8 @@
         
         
         console.log(profilejson);
-        let farming_level = getLevel('farming', profilejson, skillsjson, profilenum, uuid);
+        var Levels = {};
+        Levels["farming"] = getLevel('farming', profilejson, skillsjson, profilenum, uuid);
         let mining_level = getLevel('mining', profilejson, skillsjson, profilenum, uuid);
         let combat_level = getLevel('combat', profilejson, skillsjson, profilenum, uuid);
         let foraging_level = getLevel('foraging', profilejson, skillsjson, profilenum, uuid);
@@ -162,7 +164,7 @@
         let enchanting_level = getLevel('enchanting', profilejson, skillsjson, profilenum, uuid);
         let alchemy_level = getLevel('alchemy', profilejson, skillsjson, profilenum, uuid);
         let taming_level = getLevel('taming', profilejson, skillsjson, profilenum, uuid);
-        console.log(farming_level);
+        console.log(Levels);
         console.log(mining_level);
         console.log(combat_level);
         console.log(foraging_level);
