@@ -140,7 +140,7 @@
       function convertNbtToJson(t) {
         try {
           const n=Uint8Array.from(atob(t),t=>t.charCodeAt(0)),a=new Zlib.Gunzip(n).decompress();
-          nbt.parse(a,function(t,n){if(t)throw t;console.log(n)})
+          nbt.parse(a,function(t,n){if(t)throw t;return(n)})
         } catch(t) {
           console.log("Invalid input: couldn't parse nbt data");
         }
@@ -169,28 +169,11 @@
         console.log(alchemy_level);
         console.log(taming_level);
         console.log(profilejson.profiles[profilenum].members["4a13f41bf0c84dd1a068d57c0c3745c5"].inv_contents.data);
-        let thisthingy = profilejson.profiles[profilenum].members["4a13f41bf0c84dd1a068d57c0c3745c5"].inv_contents.data;
-        convertNbtToJson(thisthingy);
+        let nbtinventory = profilejson.profiles[profilenum].members["4a13f41bf0c84dd1a068d57c0c3745c5"].inv_contents.data;
+        let json_inventory = convertNbtToJson(nbtinventory);
         
-        /**let gzipped = atob(profilejson.profiles[profilenum].members["4a13f41bf0c84dd1a068d57c0c3745c5"].inv_contents.data)
-        console.log(gzipped);
-        let n = Uint8Array.from(inventoryunbase64)
-        console.log(n);
-        a = new Zlib.Gunzip(n).decompress();
-        console.log(a);
-        
-        let a;
-        try {
-          const n=Uint8Array.from(atob(t),t=>t.charCodeAt(0)); 
-          a = new Zlib.Gunzip(n).decompress();
-        } catch(error) {
-          console.error(error);
-        }
-        console.log(a);
-        console.log(decode_utf8(a));
+        console.log(json_inventory);
       }
-      **/
-    }
     </script>
     
     <div class="header">
