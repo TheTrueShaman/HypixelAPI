@@ -181,17 +181,16 @@
         console.log(decode_utf8(a));
       }
       **/
-      }
+    }
       
-      function convertNbtToJson(t) {
-        try {
-          const n=Uint8Array.from(atob(t),t=>t.charCodeAt(0)),a=new Zlib.Gunzip(n).decompress();
-          nbt.parse(a,function(t,n){if(t)throw t;console.log(n, syntaxHighlight(n))})
-        } catch(t) {
-          console.log("Invalid input: couldn't parse nbt data")}}
-          function syntaxHighlight(t) {
-            return"string"!=typeof t&&(t=JSON.stringify(t,void 0,2)),(t=t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")).replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,function(t){let e="number";return/^"/.test(t)?e=/:$/.test(t)?"key":"string":/true|false/.test(t)?e="boolean":/null/.test(t)&&(e="null"),'<span class="'+e+'">'+t+"</span>"})}
-        }
+    function convertNbtToJson(t) {
+      try {
+        const n=Uint8Array.from(atob(t),t=>t.charCodeAt(0)),a=new Zlib.Gunzip(n).decompress();
+        nbt.parse(a,function(t,n){if(t)throw t;console.log(n, syntaxHighlight(n))})
+      } catch(t) {
+        console.log("Invalid input: couldn't parse nbt data")}}
+        function syntaxHighlight(t) {
+          return"string"!=typeof t&&(t=JSON.stringify(t,void 0,2)),(t=t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")).replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,function(t){let e="number";return/^"/.test(t)?e=/:$/.test(t)?"key":"string":/true|false/.test(t)?e="boolean":/null/.test(t)&&(e="null"),'<span class="'+e+'">'+t+"</span>"})}
       }
     </script>
     
