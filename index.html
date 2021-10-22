@@ -168,7 +168,6 @@
         console.log(n);
         a = new Zlib.Gunzip(n).decompress();
         console.log(a);
-        **/
         
         let a;
         try {
@@ -180,6 +179,17 @@
         console.log(a);
         console.log(decode_utf8(a));
       }
+      **/
+      }
+      
+      function convertNbtToJson(t) {
+        try {
+          const n=Uint8Array.from(atob(t),t=>t.charCodeAt(0)),a=new Zlib.Gunzip(n).decompress();
+          nbt.parse(a,function(t,n){if(t)throw t;console.log(n, syntaxHighlight(n))})
+        } catch(t) {
+          console.log("Invalid input: couldn't parse nbt data")}}
+          function syntaxHighlight(t) {
+            return"string"!=typeof t&&(t=JSON.stringify(t,void 0,2)),(t=t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")).replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,function(t){let e="number";return/^"/.test(t)?e=/:$/.test(t)?"key":"string":/true|false/.test(t)?e="boolean":/null/.test(t)&&(e="null"),'<span class="'+e+'">'+t+"</span>"})}nbtInputField.onchange=function(){!alreadyParsed&&this.value.length>10&&convertNbtToJson(this.value),alreadyParsed=!1},nbtInputField.onpaste=function(){setTimeout(()=>{alreadyParsed=!0,convertNbtToJson(this.value)},30)},nbtInputField.onfocus=function(){nbtInputField.select()},document.getElementById("nbt-example1").onclick=function(){nbtInputField.value="H4sIAAAAAAAAAB2Q3UrDQBCFZ9uqyRYURO/XB7AohYq9C2tqgqGVxJ9LmTRLunSTLZuttk+U98iDiRsvhoHDnO8chgL4QCQFADKAgSzINYETrve1JRSGFksC4/c6NwK3mCtBhuBHshALhWXjTL8UzgrZ7BQefRgl2gjPqf1MunYWW1GxIJdK2uOcZbX+Ya8K18KwrhVdq9L4OXpjPIn5C9x07UMqy4295UqutwxZrrTbVrNd72EIl+5kepiypge5RGEmLujKqVw3du6gs/s7xrWs+2q0ax/7jCANPRgtsRJw7qT/FtlGfwsFFC7CgzUYWGtkvrei8fofwDhbrj6/smj1ESYAAzh9wgpL4aDwB8czT/sxAQAA",convertNbtToJson(nbtInputField.value)},document.getElementById("nbt-example2").onclick=function(){nbtInputField.value="H4sIAAAAAAAAANWTPW/bMBCGz86XLQT9SIECbYecp25dMway6jSGrXhoi4zBWTxJjCUxJSm4+kX+H/5hRY9ukaHoFiCAF+L43hF4H75kBDCEno4A4KgPfa16ix4cJaZtfC+CA0/FAQyvteKrigonU78iOFHaPVTUDeFwbiwPRD2G0XZzcVuSR6UV+pKxNrJazMwaHXXoDbySkdBZ0rIL+qUcfCfa1H90+EDOt1aaLMd1zZ+kebrd5NtNlSzSdHEzgMMbqhneiphSoTOqMNXVCsdttmIPEbyc/PSWYu+tXrae3SDwwJs0/jJN4vldOp3P7sbfk9nkG0Afjj9TTQVDqJ/A/X7HzeJcmQDlsGAfLkDb4P+iZqUz3XCAPZN9vGtiTramrBvtCSU+pmuwMy2KrQppF+5a+xIJohCu1FkZSF/Ibsyc4z3bVbcvWf5LGZJcl9z8JdUOPshERm1RetQiN8hkffmjpdUu4NchYAzmvl7Hs8lotC/5nv+HPLemFnK1JpvDSQD/82XDK05Mo7hx8ldrMf+M+cJvEox/LLEEAAA=",convertNbtToJson(nbtInputField.value)};
     </script>
     
     <div class="header">
