@@ -131,13 +131,6 @@
         return x;
       }
       
-      function decode_utf8(s) {
-        var decoder = new TextDecoder('utf-8'),
-            decodedMessage;
-        decodedMessage = decoder.decode(s);
-        return decodedMessage;
-      }
-      
       function convertNbtToJson(t) {
         let data;
         try {
