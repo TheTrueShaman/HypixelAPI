@@ -138,12 +138,14 @@
       }
       
       function convertNbtToJson(t) {
+        let data;
         try {
           const n=Uint8Array.from(atob(t),t=>t.charCodeAt(0)),a=new Zlib.Gunzip(n).decompress();
-          nbt.parse(a,function(t,n){if(t)throw t;return(n)})
+          nbt.parse(a,function(t,n){if(t)throw t;data=n})
         } catch(t) {
           console.log("Invalid input: couldn't parse nbt data");
         }
+        return data;
       }
       
       async function getStats(username, key, uuid, uuidjson, profilenum, profilejson) {
