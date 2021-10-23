@@ -1,4 +1,4 @@
-color: <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Bad Skyblock Data Viewer</title>
@@ -190,7 +190,7 @@ color: <!DOCTYPE html>
           "§f": "color: #ffffff",
           "§l": "font-weight:bold"
         }
-        console.log("If you see this message, the thing was updated.");
+        console.log("If you see this message, and update happened...");
         for (let i = 0; i < slot.tag.display.Lore.length; i++) {
           line = slot.tag.display.Lore[i];
           let display_line = "<span class=\"loreline\">";
@@ -211,6 +211,7 @@ color: <!DOCTYPE html>
                 let style2 = stylecodes[line.slice(where+2, where+4)];
                 display_line = display_line + line.slice(0, where) + "</span><span style=\"" + style + " " + style2 + "\">";
                 line = line.slice(where + 4);
+                console.log("This happened");
               } else {
                 display_line = display_line + line.slice(0, where) + "</span><span style=\"" + style + "\">";
                 line = line.slice(where + 2);
