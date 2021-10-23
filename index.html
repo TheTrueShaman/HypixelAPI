@@ -194,13 +194,13 @@
           let where = line.search("§");
           let color;
           if (where != -1) {
-            color = colorcodes[line.slice(where, where+1)];
-            console.log(line.slice(where, where+1));
+            color = colorcodes[line.slice(where, where+2)];
+            console.log(line.slice(where, where+2));
             console.log(color);
             if (where != 0) {
-              display_line = line.slice(0, where) + "<span>"
+              display_line = display_line + line.slice(0, where) + "<span style=\"color: " + color + "\">"
             } else {
-              display_line = "<span style=\"color: " + color + "\">"
+              display_line = display_line + "<span style=\"color: " + color + "\">"
             }
             line = line.slice(where + 1);
             while (where != -1) {
