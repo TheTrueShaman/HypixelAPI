@@ -194,8 +194,6 @@
           let color;
           if (where != -1) {
             color = colorcodes[line.slice(where, where+2)];
-            console.log(line.slice(where, where+2));
-            console.log(color);
             if (where != 0) {
               display_line = display_line + line.slice(0, where) + "<span style=\"color: " + color + "\">"
             } else {
@@ -209,7 +207,7 @@
             }
           }
           display_line = display_line + "</span>"
-          display = display + "";
+          display = display + display_line;
         }
         console.log("display:" + display);
         document.getElementById("statspage").innerHTML = display;
