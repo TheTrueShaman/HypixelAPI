@@ -146,7 +146,7 @@
         let skyblockskill = await fetch("https://api.hypixel.net/resources/skyblock/skills");
         let skillsjson = await skyblockskill.json();
         
-        
+        console.log(skillsjson);
         console.log(profilejson);
         var levels = {"skills":{}, "dungeons":{}};
         var skills = ['farming', 'mining', 'combat', 'foraging', 'fishing', 'enchanting', 'alchemy', 'taming'];
