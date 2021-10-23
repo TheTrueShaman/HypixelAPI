@@ -154,7 +154,7 @@
           levels["skills"][skills[i]] = {};
           let level = getLevel(skills[i], profilejson, skillsjson, profilenum, uuid);
           levels["skills"][skills[i]]["level"] = level;
-          levels["skills"][skills[i]]["xp"] = profilejson.profiles[profilenum].members[uuid]['experience_skill'+skills[i]] - skillsjson.collections[skills[i]].levels[level].totalExpRequired;
+          levels["skills"][skills[i]]["xp"] = profilejson.profiles[profilenum].members[uuid]['experience_skill'+skills[i]] - skillsjson.collections[skills[i].toUpperCase()].levels[level].totalExpRequired;
         }
         console.log(levels);
         let nbtinventory = profilejson.profiles[profilenum].members["4a13f41bf0c84dd1a068d57c0c3745c5"].inv_contents.data;
