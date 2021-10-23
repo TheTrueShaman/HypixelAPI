@@ -205,6 +205,7 @@
             console.log(line);
             while (where != -1) {
               color = colorcodes[line.slice(where, where+2)];
+              console.log(line.slice(0, where));
               display_line = display_line + line.slice(0, where) + "</span><span style=\"color: " + color + "\">";
               console.log(line);
               line = line.slice(where + 2);
