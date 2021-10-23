@@ -210,11 +210,12 @@ color: <!DOCTYPE html>
               if (stylecodes[line.slice(where+2, where+4)] != undefined) {
                 let style2 = stylecodes[line.slice(where+2, where+4)];
                 display_line = display_line + line.slice(0, where) + "</span><span style=\"" + style + " " + style2 + "\">";
+                line = line.slice(where + 4);
               } else {
-              display_line = display_line + line.slice(0, where) + "</span><span style=\"" + style + "\">";
-              line = line.slice(where + 2);
-              where = line.search("§");
+                display_line = display_line + line.slice(0, where) + "</span><span style=\"" + style + "\">";
+                line = line.slice(where + 2);
               }
+              where = line.search("§");
             }
             display_line = display_line + line + "</span>";
           }
