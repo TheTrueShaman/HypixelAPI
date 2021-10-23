@@ -1,0 +1,34 @@
+      body {
+        font-family: Arial;
+        background: #8fafaf;
+        margin: 0;
+      }
+      
+      .mainpage {
+        margin: 20px;
+      }
+      
+      .statspage {
+        margin: 20px;
+      }
+      
+      .header {
+        padding: 20px;
+        text-align: center;
+        background: #3a3d3d;
+        color: white;
+        font-size: 20px;
+        margin: 0;
+      }
+      
+      input:invalid {
+        border: 2px dashed black;
+      }
+
+      input:invalid:required {
+        border: 2px dashed red;
+      }
+
+      input:valid {
+        border: 2px solid black;
+      }
