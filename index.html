@@ -4,7 +4,42 @@
     <title>Bad Skyblock API</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://github.com/The-Shaman/HypixelAPI/blob/test-stuff/styles.css" rel="stylesheet"></link>
+    <style> 
+      body {
+        font-family: Arial;
+        background: #8fafaf;
+        margin: 0;
+      }
+      
+      .mainpage {
+        margin: 20px;
+      }
+      
+      .statspage {
+        margin: 20px;
+      }
+      
+      .header {
+        padding: 20px;
+        text-align: center;
+        background: #3a3d3d;
+        color: white;
+        font-size: 20px;
+        margin: 0;
+      }
+      
+      input:invalid {
+        border: 2px dashed black;
+      }
+
+      input:invalid:required {
+        border: 2px dashed red;
+      }
+
+      input:valid {
+        border: 2px solid black;
+      }
+</style>
   </head>
   <body onload="getURL()">
     <script src="nbt.js"></script>
