@@ -39,6 +39,10 @@
       input:valid {
         border: 2px solid black;
       }
+      
+      .loreline {
+        display: block;
+      }
 </style>
   </head>
   <body onload="getURL()">
@@ -159,7 +163,20 @@
         let nbtinventory = profilejson.profiles[profilenum].members["4a13f41bf0c84dd1a068d57c0c3745c5"].inv_contents.data;
         let json_inventory = convertNbtToJson(nbtinventory);
         console.log(json_inventory);
+        write_slot(json_inventory[0]);
       }
+      
+      function write_slot(slot) {
+        let display = "";
+        let line = "";
+        for (let i = 0; i < slot.tag.display.Lore.length; i++) {
+          line = slot.tag.display.Lore[i];
+          line.search("§");
+          display = display + "";
+        }
+        document.getElementById("statspage").innerHTML = ""
+      }
+      
     </script>
     
     <div class="header">
@@ -178,6 +195,7 @@
     </div>
     
     <div id="statspage" class="statspage">
+      
     </div>
   </body>
 </html>
