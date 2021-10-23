@@ -151,16 +151,9 @@
         var levels = {"skills":{}, "dungeons":{}};
         var skills = ['farming', 'mining', 'combat', 'foraging', 'fishing', 'enchanting', 'alchemy', 'taming'];
         for (let i = 0; i < skills.length; i++) {
-          console.log(skills[i]); 
+          levels["skills"][skills[i]] = {};
+          levels["skills"][skills[i]]["level"] = getLevel(skills[i], profilejson, skillsjson, profilenum, uuid);
         }
-        levels["skills"]["farming"] = getLevel('farming', profilejson, skillsjson, profilenum, uuid);
-        levels["skills"]["mining"] = getLevel('mining', profilejson, skillsjson, profilenum, uuid);
-        levels["skills"]["combat"] = getLevel('combat', profilejson, skillsjson, profilenum, uuid);
-        levels["skills"]["foraging"] = getLevel('foraging', profilejson, skillsjson, profilenum, uuid);
-        levels["skills"]["fishing"] = getLevel('fishing', profilejson, skillsjson, profilenum, uuid);
-        levels["skills"]["enchanting"] = getLevel('enchanting', profilejson, skillsjson, profilenum, uuid);
-        levels["skills"]["alchemy"] = getLevel('alchemy', profilejson, skillsjson, profilenum, uuid);
-        levels["skills"]["taming"] = getLevel('taming', profilejson, skillsjson, profilenum, uuid);
         console.log(levels);
         let nbtinventory = profilejson.profiles[profilenum].members["4a13f41bf0c84dd1a068d57c0c3745c5"].inv_contents.data;
         let json_inventory = convertNbtToJson(nbtinventory);
