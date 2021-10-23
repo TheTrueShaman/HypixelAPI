@@ -152,7 +152,9 @@
         var skills = ['farming', 'mining', 'combat', 'foraging', 'fishing', 'enchanting', 'alchemy', 'taming'];
         for (let i = 0; i < skills.length; i++) {
           levels["skills"][skills[i]] = {};
-          levels["skills"][skills[i]]["level"] = getLevel(skills[i], profilejson, skillsjson, profilenum, uuid);
+          let level = getLevel(skills[i], profilejson, skillsjson, profilenum, uuid);
+          levels["skills"][skills[i]]["level"] = level;
+          levels["skills"][skills[i]]["xp"] = profilejson.profiles[profilenum].members[uuid]['experience_skill'+skills[i]] - skillsjson.collections[skills[i]].levels[level].totalExpRequired;
         }
         console.log(levels);
         let nbtinventory = profilejson.profiles[profilenum].members["4a13f41bf0c84dd1a068d57c0c3745c5"].inv_contents.data;
