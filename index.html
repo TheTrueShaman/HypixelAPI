@@ -17,6 +17,7 @@
       
       .statspage {
         margin: 20px;
+        background: 
       }
       
       .header {
@@ -42,6 +43,7 @@
       
       .loreline {
         display: block;
+        min-height: 1em;
       }
 </style>
   </head>
@@ -204,16 +206,15 @@
             where = line.search("§");
             while (where != -1) {
               color = colorcodes[line.slice(where, where+2)];
-              console.log(line.slice(0, where));
+              console.log(line.slice(where, where+2));
+              console.log(color);
               display_line = display_line + line.slice(0, where) + "</span><span style=\"color: " + color + "\">";
-              console.log(line);
               line = line.slice(where + 2);
-              console.log(line);
               where = line.search("§");
             }
-            display_line = display_line + line;
+            display_line = display_line + line + "</span>";
           }
-          display_line = display_line + "</span></span>\n"
+          display_line = display_line + "</span>\n"
           display = display + display_line;
         }
         console.log("display:" + display);
