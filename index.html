@@ -149,6 +149,10 @@
         
         console.log(profilejson);
         var levels = {"skills":{}, "dungeons":{}};
+        var skills = ['farming', 'mining', 'combat', 'foraging', 'fishing', 'enchanting', 'alchemy', 'taming'];
+        for (let i = 0; i < skills.length; i++) {
+          console.log(skills[i]); 
+        }
         levels["skills"]["farming"] = getLevel('farming', profilejson, skillsjson, profilenum, uuid);
         levels["skills"]["mining"] = getLevel('mining', profilejson, skillsjson, profilenum, uuid);
         levels["skills"]["combat"] = getLevel('combat', profilejson, skillsjson, profilenum, uuid);
