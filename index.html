@@ -195,13 +195,14 @@
           if (where != -1) {
             color = colorcodes[line.slice(where, where+2)];
             if (where != 0) {
-              display_line = display_line + line.slice(0, where) + "<span style=\"color: " + color + "\">"
+              display_line = display_line + line.slice(0, where) + "<span style=\"color: " + color + "\">";
             } else {
               display_line = display_line + "<span style=\"color: " + color + "\">"
             }
             line = line.slice(where + 1);
             while (where != -1) {
               color = line.slice(where, where+1);
+              display_line = display_line + line.slice(0, where) + "</span><span style=\"color: " + color + "\">";
               line = line.slice(where + 1);
               where = line.search("§");
             }
