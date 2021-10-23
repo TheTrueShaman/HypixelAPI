@@ -156,6 +156,7 @@
           levels["skills"][skills[i]]["level"] = level;
           console.log(profilejson.profiles[profilenum].members[uuid]['experience_skill'+skills[i]]);
           console.log(skillsjson.collections[skills[i].toUpperCase()].levels[level].totalExpRequired);
+          console.log(skills[i]);
           levels["skills"][skills[i]]["xp"] = profilejson.profiles[profilenum].members[uuid]['experience_skill'+skills[i]] - skillsjson.collections[skills[i].toUpperCase()].levels[level].totalExpRequired;
         }
         console.log(levels);
