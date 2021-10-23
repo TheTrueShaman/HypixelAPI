@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+color: <!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Bad Skyblock Data Viewer</title>
@@ -171,44 +171,45 @@
       function write_slot(slot) {
         let display = "";
         let line = "";
-        let colorcodes = {
-          "§0": "#000000",
-          "§1": "#0000aa",
-          "§2": "#00aa00",
-          "§3": "#00aaaa",
-          "§4": "#aa0000",
-          "§5": "#aa00aa",
-          "§6": "#ffaa00",
-          "§7": "#aaaaaa",
-          "§8": "#555555",
-          "§9": "#5555ff",
-          "§a": "#55ff55",
-          "§b": "#55ffff",
-          "§c": "#ff5555",
-          "§d": "#ff55ff",
-          "§e": "#ffff55",
-          "§f": "#ffffff"
+        let stylecodes = {
+          "§0": "color: #000000",
+          "§1": "color: #0000aa",
+          "§2": "color: #00aa00",
+          "§3": "color: #00aaaa",
+          "§4": "color: #aa0000",
+          "§5": "color: #aa00aa",
+          "§6": "color: #ffaa00",
+          "§7": "color: #aaaaaa",
+          "§8": "color: #555555",
+          "§9": "color: #5555ff",
+          "§a": "color: #55ff55",
+          "§b": "color: #55ffff",
+          "§c": "color: #ff5555",
+          "§d": "color: #ff55ff",
+          "§e": "color: #ffff55",
+          "§f": "color: #ffffff",
+          "§l": "font-weight:bold"
         }
         console.log("hello");
         for (let i = 0; i < slot.tag.display.Lore.length; i++) {
           line = slot.tag.display.Lore[i];
           let display_line = "<span class=\"loreline\">";
           let where = line.search("§");
-          let color;
+          let style;
           if (where != -1) {
-            color = colorcodes[line.slice(where, where+2)];
+            style = stylecodes[line.slice(where, where+2)];
             if (where != 0) {
-              display_line = display_line + line.slice(0, where) + "<span style=\"color: " + color + "\">";
+              display_line = display_line + line.slice(0, where) + "<span style=\"" + style + "\">";
             } else {
-              display_line = display_line + "<span style=\"color: " + color + "\">"
+              display_line = display_line + "<span style=\"" + style + "\">"
             }
             line = line.slice(where + 2);
             where = line.search("§");
             while (where != -1) {
-              color = colorcodes[line.slice(where, where+2)];
+              style = stylecodes[line.slice(where, where+2)];
               console.log(line.slice(where, where+2));
-              console.log(color);
-              display_line = display_line + line.slice(0, where) + "</span><span style=\"color: " + color + "\">";
+              console.log(style);
+              display_line = display_line + line.slice(0, where) + "</span><span style=\"" + style + "\">";
               line = line.slice(where + 2);
               where = line.search("§");
             }
