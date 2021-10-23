@@ -187,6 +187,7 @@
           "§e": "#ffff55",
           "§f": "#ffffff"
         }
+        console.log(colorcodes);
         for (let i = 0; i < slot.tag.display.Lore.length; i++) {
           line = slot.tag.display.Lore[i];
           let display_line = "<span class=\"loreline\">";
@@ -194,6 +195,7 @@
           let color;
           if (where != -1) {
             color = colorcodes[line.slice(where, where+1)];
+            console.log(line.slice(where, where+1));
             console.log(color);
             if (where != 0) {
               display_line = line.slice(0, where) + "<span>"
