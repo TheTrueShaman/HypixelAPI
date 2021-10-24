@@ -190,7 +190,6 @@
           "§f": "color: #ffffff",
           "§l": "font-weight:bold"
         }
-        console.log("... Why is the code still broken :/");
         for (let i = 0; i < slot.tag.display.Lore.length; i++) {
           line = slot.tag.display.Lore[i];
           let display_line = "<span class=\"loreline\">";
@@ -218,7 +217,6 @@
             }  
               
             let styles_string = "";
-            console.log(styles);
             for (const property in styles) {
               styles_string = styles_string + stylecodes[`${property}`] + "; ";
             }
@@ -227,11 +225,9 @@
             } else {
               display_line = display_line + "<span>"
             }
-            console.log("Line before slice:" + line)
+            
             line = line.slice(where + (2*(y-1)));
-            console.log("Line after slice:" + line)
             where = line.search("§");
-            console.log("where:" + where);
             lineadd = true;
           }
           if (lineadd == true) {
@@ -240,7 +236,6 @@
           display_line = display_line + "</span>\n"
           display = display + display_line;
         }
-        console.log("display:" + display);
         document.getElementById("statspage").innerHTML = display;
       }
       
