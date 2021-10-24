@@ -196,6 +196,25 @@
           let display_line = "<span class=\"loreline\">";
           let where = line.search("§");
           let style;
+          let styles = {};
+          let close = false;
+          while (where != -1) {
+            let x = 0;
+            while (stylecodes[line.slice(where+(2*(x-1)), where+(2*x))] != undefined) {
+              if (!(line.slice(where+(2*(x-1)), where+(2*x)) in styles)) {
+                styles[line.slice(where+(2*(x-1)), where+(2*x)] = 1;
+              }
+              x = x + 1;
+            }
+            console.log(styles);
+            
+            if (close == true) {
+              display_line = display_line;
+            } else {
+              close = true; 
+            }
+            
+            
           if (where != -1) {
             style = stylecodes[line.slice(where, where+2)];
             display_line = display_line + line.slice(0, where) + "<span style=\"" + style + "\">";
