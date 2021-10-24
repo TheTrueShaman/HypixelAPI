@@ -229,7 +229,7 @@
               display_line = display_line + "<span>"
             }
             console.log("Line before slice" + line)
-            line = line.slice(where + (2*y));
+            line = line.slice(where + (2*(y+1)));
             console.log("Line after slice" + line)
             where = line.search("§");
             lineadd = true;
