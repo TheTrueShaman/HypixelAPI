@@ -195,6 +195,7 @@
           line = slot.tag.display.Lore[i];
           let display_line = "<span class=\"loreline\">";
           let where = line.search("§");
+          console.log(where);
           let style;
           let styles = {};
           let close = false;
@@ -203,14 +204,14 @@
           while (where != -1) {
             y = 0;
             while (stylecodes[line.slice(where+(2*(y-1)), where+(2*y))] != undefined) {
-              console.log("Stylecodes thing:" + stylecodes[line.slice(where+(2*(y-1)), where+(2*y))]);
               if (!(line.slice(where+(2*(y-1)), where+(2*y)) in styles)) {
                 let newstyle = line.slice(where+(2*(y-1)), where+(2*y))
                 styles[newstyle] = 1;
               }
               y = y + 1;
+              console.log("y inside:" + y);
             }
-            console.log("y:" + y);
+            console.log("y outside:" + y);
             
             if (close == true) {
               display_line = display_line + line.slice(0, where) + "</span>";
@@ -220,15 +221,20 @@
               
             let styles_string = "";
             for (const property in styles) {
-              console.log("Property of styles:" + `${property}`);
               styles_string = styles_string + stylecodes[`${property}`] + "; ";
             }
-            console.log("styles_string:" + styles_string);
-            display_line = display_line + "<span style=\"" + styles_string + "\">"
+            if (styles_string != "") {
+              display_line = display_line + "<span style=\"" + styles_string + "\">"
+            } else {
+              display_line = display_line + "<span>"
+            }
+            console.log("Line before slice" + line)
             line = line.slice(where + (2*y));
+            console.log("Line after slice" + line)
             where = line.search("§");
             lineadd = true;
           }
+          console.log("Lineadd:" + lineadd);
           if (lineadd == true) {
           display_line = display_line + "</span>"; 
           }
