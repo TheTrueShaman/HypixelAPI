@@ -216,8 +216,9 @@
               close = true; 
             }  
               
-            let styles_string;
+            let styles_string = "";
             for (const property in styles) {
+              console.log(`${property}`);
               styles_string = styles_string + stylecodes[`${property}`] + "; ";
             }
             console.log("styles_string:" + styles_string);
