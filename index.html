@@ -190,7 +190,7 @@
           "§f": "color: #ffffff",
           "§l": "font-weight:bold"
         }
-        console.log("If you see this message, the code was updated.");
+        console.log("If you see this message, what I just did fixed a stupid bug.");
         for (let i = 0; i < slot.tag.display.Lore.length; i++) {
           line = slot.tag.display.Lore[i];
           let display_line = "<span class=\"loreline\">";
@@ -203,7 +203,7 @@
             let x = 0;
             while (stylecodes[line.slice(where+(2*(x-1)), where+(2*x))] != undefined) {
               if (!(line.slice(where+(2*(x-1)), where+(2*x)) in styles)) {
-                styles[line.slice(where+(2*(x-1)), where+(2*x)] = 1;
+                styles[line.slice(where+(2*(x-1)), where+(2*x))] = 1;
               }
               x = x + 1;
             }
