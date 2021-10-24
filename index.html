@@ -220,7 +220,7 @@
             for (const property in styles) {
               styles_string = styles_string + stylecodes[`${property}`] + "; ";
             }
-            console.log("styles_string:" styles_string);
+            console.log("styles_string:" + styles_string);
             display_line = display_line + "<span style=\"" + styles_string + "\">"
             line = line.slice(where + (2*x));
             where = line.search("§");
