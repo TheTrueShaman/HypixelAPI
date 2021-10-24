@@ -210,7 +210,6 @@
               if (!(line.slice(where+(2*(y-1)), where+(2*y)) in styles)) {
                 let newstyle = line.slice(where+(2*(y-1)), where+(2*y))
                 styles[newstyle] = 1;
-                console.log("It works! Styles object:" + styles);
               }
               y = y + 1;
             }
@@ -222,6 +221,7 @@
             }  
               
             let styles_string = "";
+            console.log(styles);
             for (const property in styles) {
               styles_string = styles_string + stylecodes[`${property}`] + "; ";
             }
@@ -238,7 +238,7 @@
             lineadd = true;
           }
           if (lineadd == true) {
-          display_line = display_line + "</span>"; 
+          display_line = display_line + line + "</span>"; 
           }
           display_line = display_line + "</span>\n"
           display = display + display_line;
