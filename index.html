@@ -200,7 +200,7 @@
           let close = false;
           let lineadd = false;
           while (where != -1) {
-            let x = 0;
+            var x = 0;
             while (stylecodes[line.slice(where+(2*(x-1)), where+(2*x))] != undefined) {
               console.log("Stylecodes thing:" + stylecodes[line.slice(where+(2*(x-1)), where+(2*x))]);
               if (!(line.slice(where+(2*(x-1)), where+(2*x)) in styles)) {
