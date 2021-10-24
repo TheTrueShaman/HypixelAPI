@@ -204,7 +204,7 @@
             if (stylecodes[line.slice(where, where+2)] != undefined) {
               console.log("Style should be added...") 
             }
-            y = 0;
+            y = 1;
             while (stylecodes[line.slice(where+(2*(y-1)), where+(2*y))] != undefined) {
               console.log("I'm hopefull (if I see this text)!")
               if (!(line.slice(where+(2*(y-1)), where+(2*y)) in styles)) {
@@ -231,7 +231,7 @@
               display_line = display_line + "<span>"
             }
             console.log("Line before slice:" + line)
-            line = line.slice(where + (2*(y+1)));
+            line = line.slice(where + (2*y));
             console.log("Line after slice:" + line)
             where = line.search("§");
             console.log("where:" + where);
