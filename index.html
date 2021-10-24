@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Bad Skyblock API</title>
+    <title>Bad Skyblock Data Viewer</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
+    <style> 
       body {
         font-family: Arial;
         background: #8fafaf;
@@ -17,6 +17,7 @@
       
       .statspage {
         margin: 20px;
+        background: #000000;
       }
       
       .header {
@@ -39,7 +40,12 @@
       input:valid {
         border: 2px solid black;
       }
-    </style>
+      
+      .loreline {
+        display: block;
+        min-height: 1em;
+      }
+</style>
   </head>
   <body onload="getURL()">
     <script src="nbt.js"></script>
@@ -130,13 +136,6 @@
         return x;
       }
       
-      function decode_utf8(s) {
-        var decoder = new TextDecoder('utf-8'),
-            decodedMessage;
-        decodedMessage = decoder.decode(s);
-        return decodedMessage;
-      }
-      
       function convertNbtToJson(t) {
         let data;
         try {
@@ -151,34 +150,89 @@
       async function getStats(username, key, uuid, uuidjson, profilenum, profilejson) {
         let skyblockskill = await fetch("https://api.hypixel.net/resources/skyblock/skills");
         let skillsjson = await skyblockskill.json();
-        
+        var levels = {"skills":{}, "dungeons":{}};
+        var skills = ['farming', 'mining', 'combat', 'foraging', 'fishing', 'enchanting', 'alchemy', 'taming'];
         
         console.log(profilejson);
-        let farming_level = getLevel('farming', profilejson, skillsjson, profilenum, uuid);
-        let mining_level = getLevel('mining', profilejson, skillsjson, profilenum, uuid);
-        let combat_level = getLevel('combat', profilejson, skillsjson, profilenum, uuid);
-        let foraging_level = getLevel('foraging', profilejson, skillsjson, profilenum, uuid);
-        let fishing_level = getLevel('fishing', profilejson, skillsjson, profilenum, uuid);
-        let enchanting_level = getLevel('enchanting', profilejson, skillsjson, profilenum, uuid);
-        let alchemy_level = getLevel('alchemy', profilejson, skillsjson, profilenum, uuid);
-        let taming_level = getLevel('taming', profilejson, skillsjson, profilenum, uuid);
-        console.log(farming_level);
-        console.log(mining_level);
-        console.log(combat_level);
-        console.log(foraging_level);
-        console.log(fishing_level);
-        console.log(enchanting_level);
-        console.log(alchemy_level);
-        console.log(taming_level);
-        console.log(profilejson.profiles[profilenum].members["4a13f41bf0c84dd1a068d57c0c3745c5"].inv_contents.data);
+        
+        for (let i = 0; i < skills.length; i++) {
+          levels["skills"][skills[i]] = {};
+          let level = getLevel(skills[i], profilejson, skillsjson, profilenum, uuid);
+          levels["skills"][skills[i]]["level"] = level;
+          levels["skills"][skills[i]]["xp"] = profilejson.profiles[profilenum].members[uuid]['experience_skill_'+skills[i]] - skillsjson.collections[skills[i].toUpperCase()].levels[level-1].totalExpRequired;
+        }
+        console.log(levels);
         let nbtinventory = profilejson.profiles[profilenum].members["4a13f41bf0c84dd1a068d57c0c3745c5"].inv_contents.data;
         let json_inventory = convertNbtToJson(nbtinventory);
         console.log(json_inventory);
+        write_slot(json_inventory[0]);
       }
+      
+      function write_slot(slot) {
+        let display = "";
+        let line = "";
+        let stylecodes = {
+          "§0": "color: #000000",
+          "§1": "color: #0000aa",
+          "§2": "color: #00aa00",
+          "§3": "color: #00aaaa",
+          "§4": "color: #aa0000",
+          "§5": "color: #aa00aa",
+          "§6": "color: #ffaa00",
+          "§7": "color: #aaaaaa",
+          "§8": "color: #555555",
+          "§9": "color: #5555ff",
+          "§a": "color: #55ff55",
+          "§b": "color: #55ffff",
+          "§c": "color: #ff5555",
+          "§d": "color: #ff55ff",
+          "§e": "color: #ffff55",
+          "§f": "color: #ffffff",
+          "§l": "font-weight:bold"
+        }
+        console.log("If you see this message, and update happened...");
+        for (let i = 0; i < slot.tag.display.Lore.length; i++) {
+          line = slot.tag.display.Lore[i];
+          let display_line = "<span class=\"loreline\">";
+          let where = line.search("§");
+          let style;
+          if (where != -1) {
+            style = stylecodes[line.slice(where, where+2)];
+            if (where != 0) {
+              display_line = display_line + line.slice(0, where) + "<span style=\"" + style + "\">";
+            } else {
+              display_line = display_line + "<span style=\"" + style + "\">"
+            }
+            line = line.slice(where + 2);
+            where = line.search("§");
+            while (where != -1) {
+              style = stylecodes[line.slice(where, where+2)];
+              if (stylecodes[line.slice(where+2, where+4)] != undefined) {
+                let style2 = stylecodes[line.slice(where+2, where+4)];
+                display_line = display_line + line.slice(0, where) + "</span><span style=\"" + style + " " + style2 + "\">";
+                line = line.slice(where + 4);
+                console.log("This happened");
+                console.log(style, style2);
+                console.log(line);
+              } else {
+                display_line = display_line + line.slice(0, where) + "</span><span style=\"" + style + "\">";
+                line = line.slice(where + 2);
+              }
+              where = line.search("§");
+            }
+            display_line = display_line + line + "</span>";
+          }
+          display_line = display_line + "</span>\n"
+          display = display + display_line;
+        }
+        console.log("display:" + display);
+        document.getElementById("statspage").innerHTML = display;
+      }
+      
     </script>
     
     <div class="header">
-      <h1>Bad Skyblock API</h1>
+      <h1>Bad Skyblock Data Viewer</h1>
     </div>
 
     <div id="mainpage" class="mainpage">
@@ -193,6 +247,7 @@
     </div>
     
     <div id="statspage" class="statspage">
+      
     </div>
   </body>
 </html>
