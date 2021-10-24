@@ -203,7 +203,8 @@
             let x = 0;
             while (stylecodes[line.slice(where+(2*(x-1)), where+(2*x))] != undefined) {
               if (!(line.slice(where+(2*(x-1)), where+(2*x)) in styles)) {
-                styles[line.slice(where+(2*(x-1)), where+(2*x))] = 1;
+                let newstyle = line.slice(where+(2*(x-1)), where+(2*x))
+                styles[newstyle] = 1;
               }
               x = x + 1;
             }
