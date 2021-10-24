@@ -201,12 +201,9 @@
           let lineadd = false;
           let y;
           while (where != -1) {
-            if (stylecodes[line.slice(where, where+2)] != undefined) {
-              console.log("Style should be added...") 
-            }
             y = 1;
+            styles = {};
             while (stylecodes[line.slice(where+(2*(y-1)), where+(2*y))] != undefined) {
-              console.log("I'm hopefull (if I see this text)!")
               if (!(line.slice(where+(2*(y-1)), where+(2*y)) in styles)) {
                 let newstyle = line.slice(where+(2*(y-1)), where+(2*y))
                 styles[newstyle] = 1;
