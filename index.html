@@ -190,7 +190,7 @@
           "§f": "color: #ffffff",
           "§l": "font-weight:bold"
         }
-        console.log("If you see this message, what I just did fixed a stupid bug.");
+        console.log("... Why is the code broken :/");
         for (let i = 0; i < slot.tag.display.Lore.length; i++) {
           line = slot.tag.display.Lore[i];
           let display_line = "<span class=\"loreline\">";
@@ -202,6 +202,7 @@
           while (where != -1) {
             let x = 0;
             while (stylecodes[line.slice(where+(2*(x-1)), where+(2*x))] != undefined) {
+              console.log("Stylecodes thing:" + stylecodes[line.slice(where+(2*(x-1)), where+(2*x))]);
               if (!(line.slice(where+(2*(x-1)), where+(2*x)) in styles)) {
                 let newstyle = line.slice(where+(2*(x-1)), where+(2*x))
                 styles[newstyle] = 1;
@@ -218,7 +219,7 @@
               
             let styles_string = "";
             for (const property in styles) {
-              console.log(`${property}`);
+              console.log("Property of styles:" + `${property}`);
               styles_string = styles_string + stylecodes[`${property}`] + "; ";
             }
             console.log("styles_string:" + styles_string);
