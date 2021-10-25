@@ -191,54 +191,56 @@
           "§l": "font-weight:bold"
         }
         for (let i = 0; i < slot.tag.display.Lore.length; i++) {
-          line = slot.tag.display.Lore[i];
-          let display_line = "<span class=\"loreline\">";
-          let where = line.search("§");
-          let style;
-          let styles = {};
-          let close = false;
-          let lineadd = false;
-          let y;
-          while (where != -1) {
-            y = 1;
-            styles = {};
-            while (stylecodes[line.slice(where+(2*(y-1)), where+(2*y))] != undefined) {
-              if (!(line.slice(where+(2*(y-1)), where+(2*y)) in styles)) {
-                let newstyle = line.slice(where+(2*(y-1)), where+(2*y))
-                styles[newstyle] = 1;
-              }
-              y = y + 1;
-            }
-       
-            if (close == true) {
-              display_line = display_line + line.slice(0, where) + "</span>";
-            } else {
-              close = true; 
-            }  
-              
-            let styles_string = "";
-            for (const property in styles) {
-              styles_string = styles_string + stylecodes[`${property}`] + "; ";
-            }
-            if (styles_string != "") {
-              display_line = display_line + "<span style=\"" + styles_string + "\">"
-            } else {
-              display_line = display_line + "<span>"
-            }
-            
-            line = line.slice(where + (2*(y-1)));
-            where = line.search("§");
-            lineadd = true;
-          }
-          if (lineadd == true) {
-          display_line = display_line + line + "</span>"; 
-          }
-          display_line = display_line + "</span>\n"
-          display = display + display_line;
+          display = display + format_line(slot.tag.display.Lore[i], stylecodes);
         }
         document.getElementById("statspage").innerHTML = display;
       }
       
+      function format_line(line, stylecodes) {
+        let display_line = "<span class=\"loreline\">";
+        let where = line.search("§");
+        let style;
+        let styles = {};
+        let close = false;
+        let lineadd = false;
+        let y;
+        while (where != -1) {
+          y = 1;
+          styles = {};
+          while (stylecodes[line.slice(where+(2*(y-1)), where+(2*y))] != undefined) {
+            if (!(line.slice(where+(2*(y-1)), where+(2*y)) in styles)) {
+              let newstyle = line.slice(where+(2*(y-1)), where+(2*y))
+              styles[newstyle] = 1;
+            }
+            y = y + 1;
+          }
+       
+          if (close == true) {
+            display_line = display_line + line.slice(0, where) + "</span>";
+          } else {
+            close = true; 
+          }  
+              
+          let styles_string = "";
+          for (const property in styles) {
+            styles_string = styles_string + stylecodes[`${property}`] + "; ";
+          }
+          if (styles_string != "") {
+            display_line = display_line + "<span style=\"" + styles_string + "\">"
+          } else {
+            display_line = display_line + "<span>"
+          }
+            
+          line = line.slice(where + (2*(y-1)));
+          where = line.search("§");
+          lineadd = true;
+          }
+          if (lineadd == true) {
+          display_line = display_line + line + "</span>"; 
+          }
+          display_line = display_line + "</span>\n";
+          return display_line;
+      }
     </script>
     
     <div class="header">
