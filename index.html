@@ -45,6 +45,14 @@
         display: block;
         min-height: 1em;
       }
+      
+      #inventoryview {
+        display: grid;
+      }
+      
+      .inventoryslot {
+        border: 4px inset rgb(65,65,65); 
+      }
 </style>
   </head>
   <body onload="getURL()">
@@ -199,7 +207,7 @@
         for (let i = 0; i < slot.tag.display.Lore.length; i++) {
           display = display + format_line(slot.tag.display.Lore[i], stylecodes);
         }
-        document.getElementById("statspage").innerHTML = display;
+        document.getElementById("itemview").innerHTML = display;
       }
       
       function format_line(line, stylecodes) {
@@ -265,7 +273,10 @@
     </div>
     
     <div id="statspage" class="statspage">
-      
+      <div id="itemview"></div>
+      <div id="inventoryview">
+        <div class="inventory-slot">Hi</div>
+      </div>
     </div>
   </body>
 </html>
