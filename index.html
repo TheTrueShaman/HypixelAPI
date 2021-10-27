@@ -75,7 +75,7 @@
           document.getElementById("mainpage").style.display = "none";
           var searches = window.location.search;
           var poskey = searches.search("&key=");
-          if (poskey != -1) {
+          if (searches.slice(poskey) != "&key=") {
             getUser(searches.slice(5,poskey), searches.slice(poskey+5,));
           } else {
             getUser(searches.slice(5), "8688c07f-e1c2-4f47-ae37-01013664ce6f");
