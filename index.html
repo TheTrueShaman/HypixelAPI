@@ -55,7 +55,6 @@
           document.getElementById("mainpage").style.display = "none";
           var searches = window.location.search;
           var poskey = searches.search("&key=");
-          console.log("poskey:" + poskey);
           if (poskey != -1) {
             getUser(searches.slice(5,poskey), searches.slice(poskey+5,));
           } else {
