@@ -198,9 +198,8 @@
         let json_inventory = convertNbtToJson(nbtinventory);
         console.log(json_inventory);
         write_slot(json_inventory[0]);
-        let allslots = document.getElementsByClassName("inventoryslot");
         for (let i=0; i<36; i++) {
-          allslots[i].innerhtml = i;
+          document.getElementsByClassName("inventoryslot")[i].innerhtml = i;
         }
       }
       
