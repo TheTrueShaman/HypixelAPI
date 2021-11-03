@@ -202,6 +202,7 @@
           if (i < 9) {
             document.getElementsByClassName("inventoryslot")[27+i].innerHTML = i;
             let command = "write_slot(" + json_inventory[27+i] + ")";
+            console.log(i);
             console.log(json_inventory[27+i]);
             console.log(JSON.stringify(json_inventory[27+i]));
             console.log(command);
