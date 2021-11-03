@@ -275,6 +275,10 @@
           display_line = display_line + "</span>\n";
           return display_line;
       }
+      
+      function test(x) {
+         document.getElementbyId("editthis").innerHTML = x;
+      }
     </script>
     
     <div class="header">
@@ -295,7 +299,7 @@
     <div id="statspage" class="statspage">
       <div id="itemview"></div>
       <div id="inventoryview">
-        <div class="inventoryslot"></div>
+        <div class="inventoryslot" id="editthis" onmouseover="test(xhhsjsd)"></div>
         <div class="inventoryslot"></div>
         <div class="inventoryslot"></div>
         <div class="inventoryslot"></div>
