@@ -202,7 +202,6 @@
           if (i < 9) {
             document.getElementsByClassName("inventoryslot")[27+i].innerHTML = i;
             let command = "write_slot(" + JSON.stringify(json_inventory[i]) + ")";
-            console.log(command);
             document.getElementsByClassName("inventoryslot")[27+i].setAttribute("onmouseover", command);
           } else {
             document.getElementsByClassName("inventoryslot")[i-9].innerHTML = i; 
@@ -211,6 +210,7 @@
       }
       
       function write_slot(slot) {
+        console.log(slot);
         if (slot != "{}") {
           let display = "";
           let line = "";
