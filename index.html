@@ -198,6 +198,10 @@
         let json_inventory = convertNbtToJson(nbtinventory);
         console.log(json_inventory);
         write_slot(json_inventory[0]);
+        let allslots = document.getElementsByClassName("inventoryslot");
+        for (let i=0; i<36; i++) {
+          allslots[i].innerhtml = i;
+        }
       }
       
       function write_slot(slot) {
@@ -300,7 +304,7 @@
     <div id="statspage" class="statspage">
       <div id="itemview"></div>
       <div id="inventoryview">
-        <div class="inventoryslot" id="editthis" onmouseover="test('xhhsjsd')"></div>
+        <div class="inventoryslot"></div>
         <div class="inventoryslot"></div>
         <div class="inventoryslot"></div>
         <div class="inventoryslot"></div>
