@@ -201,11 +201,7 @@
         for (let i=0; i<36; i++) {
           if (i < 9) {
             document.getElementsByClassName("inventoryslot")[27+i].innerHTML = i;
-            let command = "write_slot(" + json_inventory[27+i] + ")";
-            console.log(i);
-            console.log(json_inventory);
-            console.log(json_inventory[i]);
-            console.log(JSON.stringify(json_inventory[i]));
+            let command = "write_slot(" + JSON.stringify(json_inventory[i]) + ")";
             console.log(command);
             document.getElementsByClassName("inventoryslot")[27+i].setAttribute("onmouseover", command);
           } else {
