@@ -277,7 +277,8 @@
       }
       
       function test(x) {
-         document.getElementById("editthis").innerHTML = x;
+        document.getElementById("editthis").onmouseover = "test('othertext')";
+        document.getElementById("editthis").innerHTML = x;
       }
     </script>
     
