@@ -202,6 +202,8 @@
           if (i < 9) {
             document.getElementsByClassName("inventoryslot")[27+i].innerHTML = i;
             let command = "write_slot(" + json_inventory[27+i] + ")"
+            console.log(json_inventory[27+i].stringify);
+            console.log(json_inventory[27+i].tostring);
             console.log(command);
             document.getElementsByClassName("inventoryslot")[27+i].setAttribute("onmouseover", "test('somethingelse')");
           } else {
@@ -283,11 +285,6 @@
           }
           display_line = display_line + "</span>\n";
           return display_line;
-      }
-      
-      function test(x) {
-        document.getElementById("editthis").setAttribute("onmouseover", "test('somethingelse')");
-        document.getElementById("editthis").innerHTML = x;
       }
     </script>
     
