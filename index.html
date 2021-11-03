@@ -202,10 +202,8 @@
           if (i < 9) {
             document.getElementsByClassName("inventoryslot")[27+i].innerHTML = i;
             let command = "write_slot(" + json_inventory[27+i] + ")"
-            console.log(json_inventory[27+i].stringify);
-            console.log(json_inventory[27+i].toString);
             console.log(command);
-            document.getElementsByClassName("inventoryslot")[27+i].setAttribute("onmouseover", "test('somethingelse')");
+            document.getElementsByClassName("inventoryslot")[27+i].setAttribute("onmouseover", command);
           } else {
             document.getElementsByClassName("inventoryslot")[i-9].innerHTML = i; 
           }        }
