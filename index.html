@@ -212,6 +212,7 @@
             document.getElementsByClassName("inventoryslot")[i-9].innerHTML = i; 
             let command = "write_slot(" + JSON.stringify(json_inventory[i]) + ")";
             document.getElementsByClassName("inventoryslot")[i-9].setAttribute("onmouseover", command);
+            document.getElementsByClassName("inventoryslot")[i-9].setAttribute("onmouseout", "document.getElementById('itemview').innerHTML = '';");
           }        
         }
       }
