@@ -17,7 +17,6 @@
       
       .statspage {
         margin: 20px;
-        background: #000000;
       }
       
       .header {
@@ -45,6 +44,35 @@
         display: block;
         min-height: 1em;
       }
+      
+      #itemview {
+        background: rgba(22,7,23,0.9);
+        border: 4px solid rgba(32,10,64,0.9);
+        padding: 8px;
+        border-radius: 5px;
+        display: inline-block;
+      }
+      
+      #inventoryview {
+        display: grid;
+        background: rgb(198,198,198);
+        gap: 2px;
+        grid-template-columns: repeat(9, 36px);
+        width: 340px;
+        padding: 8px;
+        border: 4px outset rgb(230,230,230);
+      }
+      
+      .inventoryslot:hover {
+        background: rgb(194,194,194);
+      }
+      
+      .inventoryslot {
+        border: 2px inset rgb(153,153,153); 
+        background: rgb(136,136,136);
+        height: 32px;
+        width: 32px;
+      }
 </style>
   </head>
   <body onload="getURL()">
@@ -55,7 +83,11 @@
           document.getElementById("mainpage").style.display = "none";
           var searches = window.location.search;
           var poskey = searches.search("&key=");
-          getUser(searches.slice(5,poskey), searches.slice(poskey+5,));
+          if (searches.slice(poskey) != "&key=") {
+            getUser(searches.slice(5,poskey), searches.slice(poskey+5,));
+          } else {
+            getUser(searches.slice(5,poskey), "8688c07f-e1c2-4f47-ae37-01013664ce6f");
+          }
         } else {
           document.getElementById("statspage").style.display = "none";
         }
@@ -166,79 +198,96 @@
         let json_inventory = convertNbtToJson(nbtinventory);
         console.log(json_inventory);
         write_slot(json_inventory[0]);
+        for (let i=0; i<36; i++) {
+          if (i < 9) {
+            document.getElementsByClassName("inventoryslot")[27+i].innerHTML = i;
+            let command = "write_slot(" + JSON.stringify(json_inventory[i]) + ")";
+            document.getElementsByClassName("inventoryslot")[27+i].setAttribute("onmouseover", command);
+          } else {
+            document.getElementsByClassName("inventoryslot")[i-9].innerHTML = i; 
+            let command = "write_slot(" + JSON.stringify(json_inventory[i]) + ")";
+            document.getElementsByClassName("inventoryslot")[i-9].setAttribute("onmouseover", command);
+          }        
+        }
       }
       
       function write_slot(slot) {
-        let display = "";
-        let line = "";
-        let stylecodes = {
-          "§0": "color: #000000",
-          "§1": "color: #0000aa",
-          "§2": "color: #00aa00",
-          "§3": "color: #00aaaa",
-          "§4": "color: #aa0000",
-          "§5": "color: #aa00aa",
-          "§6": "color: #ffaa00",
-          "§7": "color: #aaaaaa",
-          "§8": "color: #555555",
-          "§9": "color: #5555ff",
-          "§a": "color: #55ff55",
-          "§b": "color: #55ffff",
-          "§c": "color: #ff5555",
-          "§d": "color: #ff55ff",
-          "§e": "color: #ffff55",
-          "§f": "color: #ffffff",
-          "§l": "font-weight:bold"
+        if (slot.tag) {
+          let display = "";
+          let line = "";
+          let stylecodes = {
+            "§0": "color: #000000",
+            "§1": "color: #0000aa",
+            "§2": "color: #00aa00",
+            "§3": "color: #00aaaa",
+            "§4": "color: #aa0000",
+            "§5": "color: #aa00aa",
+            "§6": "color: #ffaa00",
+            "§7": "color: #aaaaaa",
+            "§8": "color: #555555",
+            "§9": "color: #5555ff",
+            "§a": "color: #55ff55",
+            "§b": "color: #55ffff",
+            "§c": "color: #ff5555",
+            "§d": "color: #ff55ff",
+            "§e": "color: #ffff55",
+            "§f": "color: #ffffff",
+            "§l": "font-weight:bold"
+          }
+          display = display + format_line(slot.tag.display.Name, stylecodes);
+          display = display + format_line("", stylecodes);
+          for (let i = 0; i < slot.tag.display.Lore.length; i++) {
+            display = display + format_line(slot.tag.display.Lore[i], stylecodes);
+          }
+          document.getElementById("itemview").innerHTML = display;
         }
-        for (let i = 0; i < slot.tag.display.Lore.length; i++) {
-          line = slot.tag.display.Lore[i];
-          let display_line = "<span class=\"loreline\">";
-          let where = line.search("§");
-          let style;
-          let styles = {};
-          let close = false;
-          let lineadd = false;
-          let y;
-          while (where != -1) {
-            y = 1;
-            styles = {};
-            while (stylecodes[line.slice(where+(2*(y-1)), where+(2*y))] != undefined) {
-              if (!(line.slice(where+(2*(y-1)), where+(2*y)) in styles)) {
-                let newstyle = line.slice(where+(2*(y-1)), where+(2*y))
-                styles[newstyle] = 1;
-              }
-              y = y + 1;
+      }
+      
+      function format_line(line, stylecodes) {
+        let display_line = "<span class=\"loreline\">";
+        let where = line.search("§");
+        let style;
+        let styles = {};
+        let close = false;
+        let lineadd = false;
+        let y;
+        while (where != -1) {
+          y = 1;
+          styles = {};
+          while (stylecodes[line.slice(where+(2*(y-1)), where+(2*y))] != undefined) {
+            if (!(line.slice(where+(2*(y-1)), where+(2*y)) in styles)) {
+              let newstyle = line.slice(where+(2*(y-1)), where+(2*y))
+              styles[newstyle] = 1;
             }
+            y = y + 1;
+          }
        
-            if (close == true) {
-              display_line = display_line + line.slice(0, where) + "</span>";
-            } else {
-              close = true; 
-            }  
+          if (close == true) {
+            display_line = display_line + line.slice(0, where) + "</span>";
+          } else {
+            close = true; 
+          }  
               
-            let styles_string = "";
-            for (const property in styles) {
-              styles_string = styles_string + stylecodes[`${property}`] + "; ";
-            }
-            if (styles_string != "") {
-              display_line = display_line + "<span style=\"" + styles_string + "\">"
-            } else {
-              display_line = display_line + "<span>"
-            }
+          let styles_string = "";
+          for (const property in styles) {
+            styles_string = styles_string + stylecodes[`${property}`] + "; ";
+          }
+          if (styles_string != "") {
+            display_line = display_line + "<span style=\"" + styles_string + "\">"
+          } else {
+            display_line = display_line + "<span>"
+          }
             
-            line = line.slice(where + (2*(y-1)));
-            where = line.search("§");
-            lineadd = true;
+          line = line.slice(where + (2*(y-1)));
+          where = line.search("§");
+          lineadd = true;
           }
           if (lineadd == true) {
           display_line = display_line + line + "</span>"; 
           }
-          display_line = display_line + "</span>\n"
-          display = display + display_line;
-        }
-        document.getElementById("statspage").innerHTML = display;
+          display_line = display_line + "</span>\n";
+          return display_line;
       }
-      
     </script>
     
     <div class="header">
@@ -250,14 +299,53 @@
         <p>Show Skyblock Stats for:</p>
         <input name="ign" type="search" placeholder="Enter username" pattern="\w{1,}" autofocus required>
         <p>Your API key:</p>
-        <input name="key" type="search" placeholder="Enter your API key" autofocus required>
+        <input name="key" type="search" placeholder="Enter your API key" autofocus>
         <br>
         <button type="submit">Show stats</button>
       </form>
     </div>
     
     <div id="statspage" class="statspage">
-      
+      <div id="itemview"></div>
+      <div id="inventoryview">
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <hr style="all: unset; grid-column: 1/10; height: 4px;">
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+        <div class="inventoryslot"></div>
+      </div>
     </div>
   </body>
 </html>
