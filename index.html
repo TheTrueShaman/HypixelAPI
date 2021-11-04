@@ -53,6 +53,10 @@
         display: inline-block;
       }
       
+      #itemview:empty {
+        display: none; 
+      }
+      
       #inventoryview {
         display: grid;
         background: rgb(198,198,198);
@@ -307,7 +311,6 @@
     </div>
     
     <div id="statspage" class="statspage">
-      <div id="itemview"></div>
       <div id="inventoryview">
         <div class="inventoryslot"></div>
         <div class="inventoryslot"></div>
@@ -347,6 +350,7 @@
         <div class="inventoryslot"></div>
         <div class="inventoryslot"></div>
       </div>
+      <div id="itemview"></div>
     </div>
   </body>
 </html>
