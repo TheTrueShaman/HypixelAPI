@@ -64,11 +64,11 @@
       #inventoryview {
         display: grid;
         background: rgb(198,198,198);
-        gap: 2px;
-        grid-template-columns: repeat(9, 36px);
-        width: 340px;
-        padding: 8px;
-        border: 4px outset rgb(230,230,230);
+        gap: var(--inv-size)/16;
+        grid-template-columns: repeat(9, var(--inv-size) + var(--inv-size)/8);
+        width: 9 * (var(--inv-size) + var(--inv-size)/8);
+        padding: var(--inv-size)/4;
+        border: var(--inv-size)/8 outset rgb(230,230,230);
       }
       
       .inventoryslot:hover {
@@ -76,10 +76,10 @@
       }
       
       .inventoryslot {
-        border: 2px inset rgb(153,153,153); 
+        border: var(--inv-size)/2 inset rgb(153,153,153); 
         background: rgb(136,136,136);
-        height: 32px;
-        width: 32px;
+        height: var(--inv-size);
+        width: var(--inv-size);
       }
 </style>
   </head>
