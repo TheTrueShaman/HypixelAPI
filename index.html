@@ -204,12 +204,10 @@
         write_slot(json_inventory[0]);
         for (let i=0; i<36; i++) {
           if (i < 9) {
-            document.getElementsByClassName("inventoryslot")[27+i].innerHTML = i + document.getElementsByClassName("inventoryslot")[27+i].innerHTML;
             let command = "write_slot(" + JSON.stringify(json_inventory[i]) + ")";
             document.getElementsByClassName("inventoryslot")[27+i].setAttribute("onmouseover", command);
             document.getElementsByClassName("inventoryslot")[27+i].setAttribute("onmouseout", "document.getElementById('itemview').innerHTML = '';");
           } else {
-            document.getElementsByClassName("inventoryslot")[i-9].innerHTML = i + document.getElementsByClassName("inventoryslot")[i-9].innerHTML;
             let command = "write_slot(" + JSON.stringify(json_inventory[i]) + ")";
             document.getElementsByClassName("inventoryslot")[i-9].setAttribute("onmouseover", command);
             document.getElementsByClassName("inventoryslot")[i-9].setAttribute("onmouseout", "document.getElementById('itemview').innerHTML = '';");
