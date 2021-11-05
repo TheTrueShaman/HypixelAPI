@@ -64,11 +64,11 @@
       #inventoryview {
         display: grid;
         background: rgb(198,198,198);
-        gap: var(--inv-size)/16;
-        grid-template-columns: repeat(9, var(--inv-size) + var(--inv-size)/8);
-        width: 9 * (var(--inv-size) + var(--inv-size)/8);
-        padding: var(--inv-size)/4;
-        border: var(--inv-size)/8 outset rgb(230,230,230);
+        gap: calc(var(--inv-size)/16);
+        grid-template-columns: repeat(9, calc(var(--inv-size) + calc(var(--inv-size)/8)));
+        width: calc(9 * calc(var(--inv-size) + calc(var(--inv-size)/8)));
+        padding: calc(var(--inv-size)/4);
+        border: calc(var(--inv-size)/8) outset rgb(230,230,230);
       }
       
       .inventoryslot:hover {
@@ -76,7 +76,7 @@
       }
       
       .inventoryslot {
-        border: var(--inv-size)/2 inset rgb(153,153,153); 
+        border: calc(var(--inv-size)/2) inset rgb(153,153,153); 
         background: rgb(136,136,136);
         height: var(--inv-size);
         width: var(--inv-size);
