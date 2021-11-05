@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style> 
       :root {
-        --inv-size: clamp(clamp(32px, 10vw, 64px), 10vw, 128px); 
+        --inv-size: clamp(clamp(32px, 5vw, 64px), 5vw, 128px); 
       }
       
       body {
@@ -66,7 +66,7 @@
         background: rgb(198,198,198);
         gap: calc(var(--inv-size)/16);
         grid-template-columns: repeat(9, calc(var(--inv-size) + calc(var(--inv-size)/8)));
-        width: calc(9 * calc(var(--inv-size) + calc(var(--inv-size)/8)));
+        width: calc(calc(9 * calc(var(--inv-size) + calc(var(--inv-size)/8))) + calc(var(--inv-size)/2));
         padding: calc(var(--inv-size)/4);
         border: calc(var(--inv-size)/8) outset rgb(230,230,230);
       }
