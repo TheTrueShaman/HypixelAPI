@@ -7,6 +7,8 @@
     <style> 
       :root {
         --inv-size: 128px; 
+        --mouse-x: 0px;
+        --mouse-y: 0px;
       }
       
       body {
@@ -55,6 +57,9 @@
         padding: 8px;
         border-radius: 5px;
         display: inline-block;
+        position: absolute;
+        top: calc(var(--mouse-y) - #itemview.height);
+        left: var(--mouse-x);
       }
       
       #itemview:empty {
@@ -296,6 +301,11 @@
           display_line = display_line + "</span>\n";
           return display_line;
       }
+
+      document.documentElement.addEventListener("mousemove", e => {
+        document.documentElement.style.setProperty('--mouse-x', e.clientX + "px");
+        document.documentElement.style.setProperty('--mouse-y', e.clientY + "px");
+      });
     </script>
     
     <div class="header">
