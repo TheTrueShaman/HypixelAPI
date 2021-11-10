@@ -223,9 +223,6 @@
             document.getElementsByClassName("inventoryslot")[i-9].innerHTML = draw_slot(json_inventory[i]);
           }        
         }
-        for (let i = 0; i<10; i=i+0.25) {
-          console.log(i + "," + Math.floor(i)) 
-        }
       }
       
       function write_slot(slot) {
@@ -314,7 +311,7 @@
       function draw_slot(slot) {
         if (slot.id) {
           let x,y,text;
-          x = ((128*slot.id) % 2560);
+          x = -1 * ((128*slot.id) % 2560);
           y = -128 * Math.floor((slot.id*128)/2560);
           console.log(x + "," + y);
           text = "<div style=\"background-image: url(items.webp); width: 128px; height: 128px; background-position: ";
