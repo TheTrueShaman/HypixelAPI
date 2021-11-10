@@ -223,6 +223,9 @@
             document.getElementsByClassName("inventoryslot")[i-9].innerHTML = draw_slot(json_inventory[i]);
           }        
         }
+        for (let i = 0; i<10; i=i+0.25) {
+          console.log(i + "," + Math.floor(i)) 
+        }
       }
       
       function write_slot(slot) {
