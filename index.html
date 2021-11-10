@@ -215,10 +215,12 @@
             let command = "write_slot(" + JSON.stringify(json_inventory[i]) + ")";
             document.getElementsByClassName("inventoryslot")[27+i].setAttribute("onmouseover", command);
             document.getElementsByClassName("inventoryslot")[27+i].setAttribute("onmouseout", "document.getElementById('itemview').innerHTML = '';");
+            document.getElementsByClassName("inventoryslot")[27+i].innerHTML = draw_slot(json_inventory[i]);
           } else {
             let command = "write_slot(" + JSON.stringify(json_inventory[i]) + ")";
             document.getElementsByClassName("inventoryslot")[i-9].setAttribute("onmouseover", command);
             document.getElementsByClassName("inventoryslot")[i-9].setAttribute("onmouseout", "document.getElementById('itemview').innerHTML = '';");
+            document.getElementsByClassName("inventoryslot")[i-9].innerHTML = draw_slot(json_inventory[i]);
           }        
         }
       }
@@ -305,6 +307,17 @@
         document.documentElement.style.setProperty('--mouse-x', e.clientX + "px");
         document.documentElement.style.setProperty('--mouse-y', e.clientY + "px");
       });
+      
+      function draw_slot(slot) {
+        if (slot.id) {
+          let x,y,text;
+          x = -1 * (slot.id%=2560);
+          y = -128 * Math.floor(slot.id/2560);
+          text = "<div style=\"background-image: url(items.webp); width: 128px; height: 128px; background-position: ";
+          text = text + x + "px " + y + "px;\"></div>";
+          return text;
+        }
+      }
     </script>
     
     <div class="header">
@@ -325,9 +338,7 @@
     <div id="statspage" class="statspage">
       <div id="itemview"></div>
       <div id="inventoryview">
-        <div class="inventoryslot">
-          <div style="background-image: url(items.webp); width: 128px; height: 128px; background-position: -2816px -128px;"></div>
-        </div>
+        <div class="inventoryslot"></div>
         <div class="inventoryslot"></div>
         <div class="inventoryslot"></div>
         <div class="inventoryslot"></div>
