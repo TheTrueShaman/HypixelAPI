@@ -312,11 +312,13 @@
         console.log("Slot id:" + slot.id);
         if (slot.id) {
           let x,y,text;
-          x = -128 * ((128*slot.id)%=2560);
+          x = -128 * ((128*slot.id) %= 2560);
           y = -128 * Math.floor(slot.id/2560);
           text = "<div style=\"background-image: url(items.webp); width: 128px; height: 128px; background-position: ";
           text = text + x + "px " + y + "px;\"></div>";
           return text;
+        } else {
+          return ""; 
         }
       }
     </script>
