@@ -314,8 +314,8 @@
       function draw_slot(slot) {
         if (slot.id) {
           let x,y,text;
-          x = -1 * ((128*slot.id) % 2560);
-          y = -128 * Math.floor(slot.id/2560);
+          x = ((128*slot.id) % 2560);
+          y = -128 * Math.floor((slot.id*128)/2560);
           console.log(x + "," + y);
           text = "<div style=\"background-image: url(items.webp); width: 128px; height: 128px; background-position: ";
           text = text + x + "px " + y + "px;\"></div>";
