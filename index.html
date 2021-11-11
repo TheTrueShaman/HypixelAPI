@@ -4,6 +4,7 @@
     <title>Bad Skyblock Data Viewer</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="inventory.css">
     <style> 
       :root {
         --inv-size: 128px; 
@@ -310,12 +311,8 @@
       
       function draw_slot(slot) {
         if (slot.id) {
-          let x,y,text;
-          x = -1 * ((128*slot.id) % 3456);
-          y = -128 * Math.floor((slot.id*128)/3456);
-          console.log(x + "," + y);
-          text = "<div style=\"background-image: url(items.webp); width: 128px; height: 128px; background-position: ";
-          text = text + x + "px " + y + "px;\"></div>";
+          let text = "<div class=\"item-icon icon-" + slot.id;
+          text = text + "\"></div>";
           return text;
         } else {
           return ""; 
