@@ -4,7 +4,6 @@
     <title>Bad Skyblock Data Viewer</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="favicon" href="favicon.ico">
     <link rel="stylesheet" href="inventory.css">
     <style> 
       :root {
@@ -312,7 +311,7 @@
       
       function draw_slot(slot) {
         if (slot.id) {
-          let text = "<div class=\"item-icon icon-" + slot.id;
+          let text = "<div class=\"item-icon icon-" + slot.id + "_0";
           text = text + "\"></div>";
           return text;
         } else {
