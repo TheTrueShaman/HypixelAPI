@@ -4,7 +4,14 @@
     <title>Bad Skyblock Data Viewer</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="inventory.css">
     <style> 
+      :root {
+        --inv-size: 128px; 
+        --mouse-x: 0px;
+        --mouse-y: 0px;
+      }
+      
       body {
         font-family: Arial;
         background: #8fafaf;
@@ -13,7 +20,7 @@
       
       .mainpage {
         margin: 20px;
-      }
+      }https://github.com/The-Shaman/HypixelAPI/blob/test-stuff/index.html
       
       .statspage {
         margin: 20px;
@@ -51,16 +58,23 @@
         padding: 8px;
         border-radius: 5px;
         display: inline-block;
+        position: absolute;
+        top: calc(var(--mouse-y) - 128px);
+        left: calc(var(--mouse-x) + 5px);
+      }
+      
+      #itemview:empty {
+        display: none; 
       }
       
       #inventoryview {
         display: grid;
         background: rgb(198,198,198);
-        gap: 2px;
-        grid-template-columns: repeat(9, 36px);
-        width: 340px;
-        padding: 8px;
-        border: 4px outset rgb(230,230,230);
+        gap: calc(var(--inv-size)/16);
+        grid-template-columns: repeat(9, calc(var(--inv-size) + calc(var(--inv-size)/8)));
+        width: calc(calc(9 * calc(var(--inv-size) + calc(var(--inv-size)/8))) + calc(var(--inv-size)/2));
+        padding: calc(var(--inv-size)/4);
+        border: calc(var(--inv-size)/8) outset rgb(230,230,230);
       }
       
       .inventoryslot:hover {
@@ -68,10 +82,10 @@
       }
       
       .inventoryslot {
-        border: 2px inset rgb(153,153,153); 
+        border: calc(var(--inv-size)/16) inset rgb(153,153,153); 
         background: rgb(136,136,136);
-        height: 32px;
-        width: 32px;
+        height: var(--inv-size);
+        width: var(--inv-size);
       }
 </style>
   </head>
@@ -194,19 +208,20 @@
           levels["skills"][skills[i]]["xp"] = profilejson.profiles[profilenum].members[uuid]['experience_skill_'+skills[i]] - skillsjson.collections[skills[i].toUpperCase()].levels[level-1].totalExpRequired;
         }
         console.log(levels);
-        let nbtinventory = profilejson.profiles[profilenum].members["4a13f41bf0c84dd1a068d57c0c3745c5"].inv_contents.data;
+        let nbtinventory = profilejson.profiles[profilenum].members[uuid].inv_contents.data;
         let json_inventory = convertNbtToJson(nbtinventory);
         console.log(json_inventory);
-        write_slot(json_inventory[0]);
         for (let i=0; i<36; i++) {
           if (i < 9) {
-            document.getElementsByClassName("inventoryslot")[27+i].innerHTML = i;
             let command = "write_slot(" + JSON.stringify(json_inventory[i]) + ")";
             document.getElementsByClassName("inventoryslot")[27+i].setAttribute("onmouseover", command);
+            document.getElementsByClassName("inventoryslot")[27+i].setAttribute("onmouseout", "document.getElementById('itemview').innerHTML = '';");
+            document.getElementsByClassName("inventoryslot")[27+i].innerHTML = draw_slot(json_inventory[i]);
           } else {
-            document.getElementsByClassName("inventoryslot")[i-9].innerHTML = i; 
             let command = "write_slot(" + JSON.stringify(json_inventory[i]) + ")";
             document.getElementsByClassName("inventoryslot")[i-9].setAttribute("onmouseover", command);
+            document.getElementsByClassName("inventoryslot")[i-9].setAttribute("onmouseout", "document.getElementById('itemview').innerHTML = '';");
+            document.getElementsByClassName("inventoryslot")[i-9].innerHTML = draw_slot(json_inventory[i]);
           }        
         }
       }
@@ -288,6 +303,21 @@
           display_line = display_line + "</span>\n";
           return display_line;
       }
+      
+      document.documentElement.addEventListener("mousemove", e => {
+        document.documentElement.style.setProperty('--mouse-x', e.clientX + "px");
+        document.documentElement.style.setProperty('--mouse-y', e.clientY + "px");
+      });
+      
+      function draw_slot(slot) {
+        if (slot.id) {
+          let text = "<div class=\"item-icon icon-" + slot.id + "_0";
+          text = text + "\"></div>";
+          return text;
+        } else {
+          return ""; 
+        }
+      }
     </script>
     
     <div class="header">
@@ -335,7 +365,7 @@
         <div class="inventoryslot"></div>
         <div class="inventoryslot"></div>
         <div class="inventoryslot"></div>
-        <hr style="all: unset; grid-column: 1/10; height: 4px;">
+        <hr style="all: unset; grid-column: 1/10; height: calc(var(--inv-size)/4);">
         <div class="inventoryslot"></div>
         <div class="inventoryslot"></div>
         <div class="inventoryslot"></div>
