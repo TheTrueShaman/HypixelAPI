@@ -10,7 +10,7 @@ function getURL() {
         }
     } else {
         document.getElementById("main").innerHTML = 
-    		"<div id=\"mainpage\" class=\"mainpage\"><form><p>Show Skyblock Stats for:</p><input name=\"ign\" type=\"search\" placeholder=\"Enter username\" pattern=\"\w{1,}\" autofocus required><p>Your API key:</p><input name=\"key\" type=\"search\" placeholder=\"Enter your API key\" autofocus><br><button type=\"submit\">Show stats</button></form></div>";
+    		"<div style=\"margin:20px\"><form><p>Show Skyblock Stats for:</p><input name=\"ign\" type=\"search\" placeholder=\"Enter username\" pattern=\"\w{1,}\" autofocus required><p>Your API key:</p><input name=\"key\" type=\"search\" placeholder=\"Enter your API key\" autofocus><br><button type=\"submit\">Show stats</button></form></div>";
     }
 }
 
