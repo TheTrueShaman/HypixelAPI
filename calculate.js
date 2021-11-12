@@ -9,8 +9,7 @@ function getURL() {
             getUser(searches.slice(5,poskey), "8688c07f-e1c2-4f47-ae37-01013664ce6f");
         }
     } else {
-        document.getElementById("main").innerHTML = 
-    		"<div style=\"margin:20px\"><form><p>Show Skyblock Stats for:</p><input name=\"ign\" type=\"search\" placeholder=\"Enter username\" pattern=\"\w{1,}\" autofocus required><p>Your API key:</p><input name=\"key\" type=\"search\" placeholder=\"Enter your API key\" autofocus><br><button type=\"submit\">Show stats</button></form></div>";
+        document.getElementById("main").innerHTML = "<div style=\"margin:20px\"><form><p>Show Skyblock Stats for:</p><input name=\"ign\" type=\"search\" placeholder=\"Enter username\" pattern=\"\w{1,}\" autofocus required><p>Your API key:</p><input name=\"key\" type=\"search\" placeholder=\"Enter your API key\" autofocus><br><button type=\"submit\">Show stats</button></form></div>";
     }
 }
 
