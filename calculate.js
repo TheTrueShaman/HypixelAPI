@@ -4,7 +4,7 @@ function getURL() {
         var poskey = searches.search("&key=");
         getUser(searches.slice(5,poskey), searches.slice(poskey+5,));
     } else {
-        document.getElementById("main").innerHTML = "<div style=\"margin:20px\"><form><p>Show Skyblock Stats for:</p><input name=\"ign\" type=\"search\" placeholder=\"Enter username\" pattern=\"\\w{1,}\" autofocus required><p>Your API key:</p><input name=\"key\" type=\"search\" placeholder=\"Enter your API key\" autofocus><br><button type=\"submit\">Show stats</button></form></div>";
+        document.getElementById("main").innerHTML = "<div style=\"margin:20px\"><form><p>Show Skyblock Stats for:</p><input name=\"ign\" type=\"search\" placeholder=\"Enter username\" pattern=\"\\w{1,}\" autofocus required><p>Your API key:</p><input name=\"key\" type=\"search\" placeholder=\"Enter your API key\" autofocus required><br><button type=\"submit\">Show stats</button></form></div>";
     }
 }
 
