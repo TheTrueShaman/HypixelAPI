@@ -3,23 +3,20 @@ function getURL() {
         document.getElementById("mainpage").style.display = "none";
         var searches = window.location.search;
         var poskey = searches.search("&key=");
-        if (searches.slice(poskey) != "&key=") {
-            getUser(searches.slice(5,poskey), searches.slice(poskey+5,));
-        } else {
-            getUser(searches.slice(5,poskey), "8688c07f-e1c2-4f47-ae37-01013664ce6f");
-        }
+        getUser(searches.slice(5,poskey), searches.slice(poskey+5,));
     } else {
-        document.getElementById("main").innerHTML = "<div style=\"margin:20px\"><form><p>Show Skyblock Stats for:</p><input name=\"ign\" type=\"search\" placeholder=\"Enter username\" pattern=\"\w{1,}\" autofocus required><p>Your API key:</p><input name=\"key\" type=\"search\" placeholder=\"Enter your API key\" autofocus><br><button type=\"submit\">Show stats</button></form></div>";
+        document.getElementById("main").innerHTML = "<div style=\"margin:20px\"><form><p>Show Skyblock Stats for:</p><input name=\"ign\" type=\"search\" placeholder=\"Enter username\" pattern=\"\\w{1,}\" autofocus required><p>Your API key:</p><input name=\"key\" type=\"search\" placeholder=\"Enter your API key\" autofocus><br><button type=\"submit\">Show stats</button></form></div>";
     }
 }
 
 async function getUser(username, key) {
     let uuidURL = 'https://api.ashcon.app/mojang/v2/user/' + username;
     const uuidData = await fetch(uuidURL);
+	
     if (uuidData.ok == false) {
-        console.log("Invalid Minecraft Username."); 
-        return 0;
-    } 
+    	console.log("Invalid Minecraft Username."); 
+	return 0;
+    }
     const uuidjson = await uuidData.json();
     let uuid = uuidjson.uuid;
     uuid = uuid.replace(/-/g, '');
