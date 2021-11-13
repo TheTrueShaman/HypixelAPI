@@ -1,6 +1,5 @@
 function getURL() {
     if (window.location.search) {
-        document.getElementById("mainpage").style.display = "none";
         var searches = window.location.search;
         var poskey = searches.search("&key=");
         getUser(searches.slice(5,poskey), searches.slice(poskey+5,));
