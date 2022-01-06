@@ -222,6 +222,9 @@ function draw_slot(slot) {
     if (slot.id) {
         let text = "<div class=\"item-icon icon-" + slot.id + "_0";
         text = text + "\"></div>";
+		if (slot.Count != 1) {
+			text = text + "<div class=\"item-count\">" + slot.Count + "</div>";
+		}
         return text;
     } else {
         return ""; 
