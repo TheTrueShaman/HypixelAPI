@@ -113,6 +113,7 @@ async function getStats(username, key, uuid, uuidjson, profilenum, profilejson) 
     let nbtinventory = profilejson.profiles[profilenum].members[uuid].inv_contents.data;
     let json_inventory = convertNbtToJson(nbtinventory);
     console.log(json_inventory);
+	document.getElementById('main').innerHTML = '<div id="itemview"></div><div id="inventoryview"></div>';
     for (let i=0; i<36; i++) {
         if (i < 9) {
             let command = "write_slot(" + JSON.stringify(json_inventory[i]) + ")";
@@ -124,7 +125,11 @@ async function getStats(username, key, uuid, uuidjson, profilenum, profilejson) 
             document.getElementsByClassName("inventoryslot")[i-9].setAttribute("onmouseover", command);
             document.getElementsByClassName("inventoryslot")[i-9].setAttribute("onmouseout", "document.getElementById('itemview').innerHTML = '';");
             document.getElementsByClassName("inventoryslot")[i-9].innerHTML = draw_slot(json_inventory[i]);
-        }        
+        }
+		document.getElementById('inventoryview').innerHTML = document.getElementById('inventoryview').innerHTML + '<div class="inventoryslot"></div>';
+		if (i == 26) {
+			document.getElementById('inventoryview').innerHTML = document.getElementById('inventoryview').innerHTML + '<hr style="all: unset; grid-column: 1/10; height: calc(var(--inv-size)/4);">';
+		}
     }
 }
 
