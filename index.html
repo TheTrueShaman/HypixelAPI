@@ -2,11 +2,43 @@
 <html lang="en">
   <head>
     <title>Hello</title>
+    <style>
+      body {
+        font-family: Arial;
+        background: #8fafaf;
+        margin: 0;
+      }
+
+      .tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+      }
+
+      /* Style the buttons inside the tab */
+      .tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+        font-size: 17px;
+        width: 50%;
+        text-align: center;
+      }
+
+      /* Change background color of buttons on hover */
+      .tab button:hover {
+        background-color: #ddd;
+      }
+    </style>
   </head>
   <body>
     <div style="width: 100%; overflow: hidden;">
-      <div style="border: 0.5% solid #ccc; width: 49%;">Hi</div>
-      <div style="border: 0.5% solid #ccc; width: 49%;">Hi</div>
+      <button onclick="window.location.href='/profile-viewer'">Profile Viewer</button>
+      <button onclick="window.location.href='/auctions-viewer'">Auctions Viewer</button>
     </div>
   </body>
 </html>
