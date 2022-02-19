@@ -9,6 +9,15 @@
         margin: 0;
       }
 
+      .header {
+        padding: 20px;
+        text-align: center;
+        background: #3a3d3d;
+        color: white;
+        font-size: 20px;
+        margin: 0;
+      }
+      
       .tab {
         overflow: hidden;
         border: 1px solid #ccc;
@@ -34,6 +43,9 @@
     </style>
   </head>
   <body>
+    <div class="header">
+      <h1>Skyblock Data Viewer</h1>
+    </div>
     <div class="tab" style="width: 100%; overflow: hidden;">
       <button onclick="window.location.href='/HypixelAPI/profile-viewer'">Profile Viewer</button>
       <button onclick="window.location.href='/HypixelAPI/auctions-viewer'">Auctions Viewer</button>
