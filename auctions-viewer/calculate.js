@@ -27,6 +27,6 @@ async function getPage(page) {
 }
 
 function search() {
-    const search_input = document.getElementById("search").innerText;
+    const search_input = document.getElementById("search_bar").value;
     console.log(search_input);
 }
