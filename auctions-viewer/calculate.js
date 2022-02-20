@@ -25,3 +25,8 @@ async function getPage(page) {
     const auctionPageJSON = await auctionPageData.json();
     console.log(auctionPageJSON);
 }
+
+function search() {
+    const search_input = document.getElementById("search").innerHTML;
+    console.log(search_input);
+}
