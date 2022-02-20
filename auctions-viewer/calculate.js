@@ -6,7 +6,7 @@ Put the first in auctions-viewer, put the second in player-auctions-viewer.
 */
 
 async function getPage(page) {
-    let auctionsURL = new URL('https://api.hypixel.net/skyblock/profiles')
+    let auctionsURL = new URL('https://api.hypixel.net/skyblock/auctions')
     auctionsURL.searchParams.set('page', page);
     const auctionPageData = await fetch(auctionsURL);
     console.log(auctionPageData);
