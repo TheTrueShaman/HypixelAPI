@@ -13,3 +13,4 @@ async function getPage(page) {
 	const auctionPageJSON = await auctionPageData.json();
 	console.log(auctionPageJSON);
 }
+
