@@ -5,6 +5,18 @@ Implement both, but prioritize the normal one rather than the player auctions se
 Put the first in auctions-viewer, put the second in player-auctions-viewer.
 */
 
+function loadOne() {
+    document.getElementById("loadone").innerHTML = "Reload One";
+    document.getElementById("loadall").innerHTML = "Load All";
+    //Put functional code here.
+}
+
+function loadAll() {
+    document.getElementById("loadone").innerHTML = "Load One";
+    document.getElementById("loadall").innerHTML = "Reload All";
+    //Put functional code here.
+}
+
 async function getPage(page) {
     let auctionsURL = new URL('https://api.hypixel.net/skyblock/auctions')
     auctionsURL.searchParams.set('page', page);
