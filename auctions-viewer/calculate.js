@@ -38,7 +38,7 @@ async function getPage(page) {
 function search() {
     const search_input = document.getElementById("search_bar").value;
     console.log(search_input);
-    const search_results = window.SB_Item_List.map(search_map(element, index));
+    const search_results = window.SB_Item_List.map(search_map);
     //Add search settings that allow you to search specifically name, lore, or both. Add things that can allow you to search
 }
 
