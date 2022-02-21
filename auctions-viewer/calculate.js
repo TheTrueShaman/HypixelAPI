@@ -8,14 +8,23 @@ Put the first in auctions-viewer, put the second in player-auctions-viewer.
 function loadOne() {
     document.getElementById("loadone").innerHTML = "Reload One";
     document.getElementById("loadall").innerHTML = "Load All";
-    window.SB_Item_List = getPage(0);
+    getAuctions(0);
 }
 
 function loadAll() {
     document.getElementById("loadone").innerHTML = "Load One";
     document.getElementById("loadall").innerHTML = "Reload All";
-    //Put functional code here.
+    getAuctions(1);
 }
+
+async function getAuctions(type) {
+    window.SB_Item_List = [];
+    window.SB_Item_List = await getPage(0);
+    if (type == 1) {
+        //Put code to request all pages here.
+    }
+}
+
 
 async function getPage(page) {
     let auctionsURL = new URL('https://api.hypixel.net/skyblock/auctions')
