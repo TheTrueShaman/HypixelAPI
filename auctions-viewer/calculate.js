@@ -43,7 +43,7 @@ function search() {
 }
 
 function search_map(element, index) {
-    const auctions = element[auctions];
+    const auctions = element["auctions"];
     for (let i=0; i < 10; i++) {
         const auctions2 = auctions[i];
         const x = auctions2.map(specific_search);
