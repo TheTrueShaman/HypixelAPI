@@ -43,6 +43,15 @@ function search() {
 }
 
 function search_map(element, index) {
-    element = element;
-    //Make this functional.
+    const auctions = element[auctions];
+    for (let i=0; i < 10; i++) {
+        const auctions2 = auctions[i];
+        const x = auctions2.map(specific_search);
+    }
+}
+
+function specific_search(element, index, prev_index) {
+    console.log("Element", element);
+    console.log("Index", index);
+    console.log("prev_index", index);
 }
