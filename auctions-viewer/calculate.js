@@ -44,14 +44,11 @@ function search() {
 
 function search_map(element, index) {
     const auctions = element["auctions"];
-    for (let i=0; i < 10; i++) {
-        const auctions2 = auctions[i];
-        const x = auctions2.map(specific_search);
+    for (let a=0; a<10; a++) {
+        const auctions2 = auctions[a];
+        for (let b=0; b<100; b++) {
+            const auction = auctions2[b];
+            //search auction here, based on preferences.
+        }
     }
-}
-
-function specific_search(element, index, prev_index) {
-    console.log("Element", element);
-    console.log("Index", index);
-    console.log("prev_index", index);
 }
