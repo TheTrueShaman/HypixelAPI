@@ -21,7 +21,10 @@ async function getAuctions(type) {
     window.SB_Item_List = [];
     window.SB_Item_List.push(await getPage(0));
     if (type == 1) {
-        //Put code to request all pages here.
+        let pages = window.SB_Item_List[0]['totalPages']
+        for (let i = 1; i < pages; i++) {
+            window.SB_Item_List.push(await getPage(1));
+        }
     }
 }
 
