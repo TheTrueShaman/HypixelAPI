@@ -46,7 +46,8 @@ function search() {
 }
 
 function search_map(element, index) {
-    console.log((element, index));
+    console.log(element);
+    console.log(index);
     const auctions = element["auctions"];
     for (let a=0; a<10; a++) {
         const auctions2 = auctions[a];
