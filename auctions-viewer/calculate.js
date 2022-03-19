@@ -49,6 +49,9 @@ function search_map(element, index) {
     console.log(element);
     console.log(index);
     const auctions = element["auctions"];
+    console.log(auctions[999])
+    console.log(auctions[9][99]);
+    /*
     for (let a=0; a<10; a++) {
         const auctions2 = auctions[a];
         for (let b=0; b<100; b++) {
@@ -56,4 +59,5 @@ function search_map(element, index) {
             //search auction here, based on preferences.
         }
     }
+    */
 }
