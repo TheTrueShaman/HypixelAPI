@@ -21,11 +21,9 @@ async function getAuctions(type) {
     window.SB_Item_List = [];
     window.SB_Item_List.push(await getPage(0));
     if (type == 1) {
-        console.log('hello');
         let pages = window.SB_Item_List[0]['totalPages']
         for (let i = 1; i < pages; i++) {
             window.SB_Item_List.push(await getPage(i));
-            console.log('hi');
         }
     }
 }
@@ -41,13 +39,14 @@ async function getPage(page) {
 }
 
 function search() {
-    const search_input = document.getElementById("search_bar").value;
-    console.log(search_input);
+    window.search_input = document.getElementById("search_bar").value;
+    console.log(window.search_input);
     const search_results = window.SB_Item_List.map(search_map);
     //Add search settings that allow you to search specifically name, lore, or both. Add things that can allow you to search
 }
 
 function search_map(element, index) {
+    console.log((element, index));
     const auctions = element["auctions"];
     for (let a=0; a<10; a++) {
         const auctions2 = auctions[a];
