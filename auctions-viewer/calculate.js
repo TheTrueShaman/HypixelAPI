@@ -101,6 +101,7 @@ function display_results(results) {
         let better_results = [];
         for (let a = 0; a < results.length; a++) {
             results_amount += results[a].length;
+			console.log(results[a]);
             better_results.concat(results[a]);
         }
         console.log(better_results);
