@@ -123,15 +123,12 @@ function draw_inventory() {
 	for (let i = 0; i < Math.min((results_amount - window.index), 54); i++) {
 		document.getElementById('inventoryview').innerHTML = document.getElementById('inventoryview').innerHTML + '<div class="inventoryslot"></div>';
 	}
-		
-	/*
 	for (let i = window.index; i < Math.min((better_results.length - window.index), 54 + window.index); i++) {
-		let command = "write_slot(" + JSON.stringify(json_inventory[i]) + ")"; This line needs to be rewritten.
+		let command = "write_slot(" + JSON.stringify(convertNbtToJson(window.items[i]['item_bytes'])) + ")";
 		document.getElementsByClassName("inventoryslot")[i].setAttribute("onmouseover", command);
 		document.getElementsByClassName("inventoryslot")[i].setAttribute("onmouseout", "document.getElementById('itemview').innerHTML = '';");
 		document.getElementsByClassName("inventoryslot")[i].innerHTML = draw_slot(json_inventory[i]);
 	}
-	*/
 }
 
 
@@ -199,7 +196,7 @@ function format_line(line, stylecodes) {
 		if (styles_string != "") {
 			display_line = display_line + "<span style=\"" + styles_string + "\">"
 		} else {
-		display_line = display_line + "<span>"
+			display_line = display_line + "<span>"
 		}
         
 		line = line.slice(where + (2*(y-1)));
@@ -229,4 +226,15 @@ function draw_slot(slot) {
 	} else {
 		return ""; 
 	}
+}
+
+function convertNbtToJson(t) {
+	let data;
+	try {
+		const n=Uint8Array.from(atob(t),t=>t.charCodeAt(0)),a=new Zlib.Gunzip(n).decompress();
+		nbt.parse(a,function(t,n){if(t)throw t;data=n})
+	} catch(t) {
+		console.log("Invalid input: couldn't parse nbt data");
+	}
+	return data;
 }
