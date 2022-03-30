@@ -109,7 +109,7 @@ function display_results(results) {
 			window.items.push(window.SB_Item_List[better_results[i][0]]['auctions'][better_results[i][1]]);
 		}
 		if (window.items.length > 54) {
-			document.getElementById('inventoryview').innerHTML = 'Next';
+			document.getElementById('next').innerHTML = 'Next';
 		}
 		draw_inventory();
 	}
