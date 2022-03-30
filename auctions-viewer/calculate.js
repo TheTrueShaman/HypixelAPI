@@ -100,13 +100,10 @@ function display_results(results) {
         let results_amount = 0;
         for (let a = 0; a < results.length; a++) {
             results_amount += results[a].length;
-            console.log(a);
         }
-        console.log(results_amount);
         if (results_amount % 9 != 0) {
             results_amount += (9 - (results_amount % 9));
         }
-        console.log(results_amount);
         /*
         for (let a = 1; a < results.length; a++) {
             for (let b = 1; b < results[a].length; b++) {
