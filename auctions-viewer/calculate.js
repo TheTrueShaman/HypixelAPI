@@ -33,7 +33,6 @@ async function getAuctions(type) {
     }
 }
 
-
 async function getPage(page) {
     let auctionsURL = new URL('https://api.hypixel.net/skyblock/auctions')
     auctionsURL.searchParams.set('page', page);
@@ -41,6 +40,16 @@ async function getPage(page) {
     const auctionPageJSON = await auctionPageData.json();
     console.log(auctionPageJSON);
     return auctionPageJSON;
+}
+
+function settings(setting) {
+    const id = "option" + setting.toString();
+    window.search_settings[setting-1] = !window.search_settings[setting-1];
+    if window.search_settings[setting-1] == "false" {
+        document.getElementById(id).innerHTML = "Off"
+    } else {
+        document.getElementById(id).innerHTML = "On"
+    }
 }
 
 function search() {
