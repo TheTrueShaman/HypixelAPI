@@ -98,14 +98,26 @@ function display_results(results) {
     if (results.length != 0) {
         document.getElementById('main').innerHTML = '<div id="itemview"></div><div id="inventoryview"></div>';
         let results_amount = 0;
+        let better_results = [];
         for (let a = 0; a < results.length; a++) {
             results_amount += results[a].length;
+            better_results.concat(results[a]);
         }
+        console.log(better_results);
+        const results_amount_original = results_amount;
         if (results_amount % 9 != 0) {
             results_amount += (9 - (results_amount % 9));
         }
         for (let i = 0; i < results_amount; i++) {
     		document.getElementById('inventoryview').innerHTML = document.getElementById('inventoryview').innerHTML + '<div class="inventoryslot"></div>';
         }
+        /*
+        for (let i = 0; i < results_amount_original; i++) {
+            let command = "write_slot(" + JSON.stringify(json_inventory[i]) + ")"; This line needs to be rewritten.
+			document.getElementsByClassName("inventoryslot")[27+i].setAttribute("onmouseover", command);
+			document.getElementsByClassName("inventoryslot")[27+i].setAttribute("onmouseout", "document.getElementById('itemview').innerHTML = '';");
+			document.getElementsByClassName("inventoryslot")[27+i].innerHTML = draw_slot(json_inventory[i]);
+        }
+        */
     }
 }
