@@ -50,18 +50,19 @@ function settings(setting) {
 function search() {
     window.search_input = document.getElementById("search_bar").value;
     console.log(window.search_input);
-    if (window.search_settings == [true, true, true]) {
+    const settings = JSON.stringify(window.search_settings);
+    if (settings == JSON.stringify([true, true, true])) {
         console.log("Search 1");
-    } else if (window.search_settings == [true, true, false]) {
+    } else if (settings == JSON.stringify([true, true, false])) {
         console.log("Search 2");
         const search_results = window.SB_Item_List.map(search_map);
-    } else if (window.search_settings == [true, false, true]) {
+    } else if (settings == JSON.stringify([true, false, true])) {
         console.log("Search 3");
-    } else if (window.search_settings == [true, false, false]) {
+    } else if (settings == JSON.stringify([true, false, false])) {
         console.log("Search 4");
-    } else if (window.search_settings == [false, true, true]) {
+    } else if (settings == JSON.stringify([false, true, true])) {
         console.log("Search 5");
-    } else if (window.search_settings == [false, true, false]) {
+    } else if (settings == JSON.stringify([false, true, false])) {
         console.log("Search 6");
     } else {
         console.log("Search not possible.");
