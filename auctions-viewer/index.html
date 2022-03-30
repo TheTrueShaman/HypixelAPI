@@ -121,13 +121,13 @@
         font-weight: 600;
       }
       
-      #selection {
+      .selection {
         overflow: hidden;
         border: 1px solid #ccc;
         background-color: #f1f1f1;
       }
 
-      #selection button {
+      .selection button {
         background-color: inherit;
         float: left;
         border: none;
@@ -140,7 +140,7 @@
         text-align: center;
       }
       
-      #selection button:hover {
+      .selection button:hover {
         background-color: #ccc;
       }
 </style>
@@ -151,7 +151,7 @@
     <div class="header">
       <h1>Skyblock Auctions Viewer</h1>
     </div>
-    <div id="selection">
+    <div class="selection">
       <button id="loadone" onclick="loadOne()">Load One</button>
       <button id="loadall" onclick="loadAll()">Load All</button>
     </div>
