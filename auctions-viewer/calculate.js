@@ -50,7 +50,22 @@ function settings(setting) {
 function search() {
     window.search_input = document.getElementById("search_bar").value;
     console.log(window.search_input);
-    const search_results = window.SB_Item_List.map(search_map);
+    if (window.search_settings == [true, true, true]) {
+        console.log("Search 1");
+    } else if (window.search_settings == [true, true, false]) {
+        console.log("Search 2");
+        const search_results = window.SB_Item_List.map(search_map);
+    } else if (window.search_settings == [true, false, true]) {
+        console.log("Search 3");
+    } else if (window.search_settings == [true, false, false]) {
+        console.log("Search 4");
+    } else if (window.search_settings == [false, true, true]) {
+        console.log("Search 5");
+    } else if (window.search_settings == [false, true, false]) {
+        console.log("Search 6");
+    } else {
+        console.log("Search not possible.");
+    }
     //Add search settings that allow you to search specifically name, lore, or both. Add things that can allow you to search
 }
 
