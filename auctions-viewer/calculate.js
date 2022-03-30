@@ -76,9 +76,13 @@ function search() {
 function search_map_title_lore(element, index) {
     console.log(element);
     console.log(index);
+    const includes = [];
     const auctions = element["auctions"];
     for (let a=0; a<1000; a++) {
         const auction = auctions[a];
         const text = (auction["item_lore"] + auction["item_name"]).replaceAll(/§([a-z]|[0-9])/g, '');
+        if (text.search(window.search_input != -1) {
+            includes.append((index,a));
+        }
     }
 }
