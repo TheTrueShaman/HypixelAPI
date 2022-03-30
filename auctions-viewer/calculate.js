@@ -104,12 +104,8 @@ function display_results(results) {
         if (results_amount % 9 != 0) {
             results_amount += (9 - (results_amount % 9));
         }
-        /*
-        for (let a = 1; a < results.length; a++) {
-            for (let b = 1; b < results[a].length; b++) {
-            
-            }
+        for (let i = 0; i < results_amount; i++) {
+    		document.getElementById('inventoryview').innerHTML = document.getElementById('inventoryview').innerHTML + '<div class="inventoryslot"></div>';
         }
-        */
     }
 }
