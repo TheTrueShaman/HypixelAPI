@@ -98,8 +98,9 @@ function display_results(results) {
     if (results.length != 0) {
         document.getElementById('main').innerHTML = '<div id="itemview"></div><div id="inventoryview"></div>';
         let results_amount = 0;
-        for (let a = 1; a < results.length; a++) {
+        for (let a = 0; a < results.length; a++) {
             results_amount += results[a].length;
+            console.log(a);
         }
         console.log(results_amount);
         if (results_amount % 9 != 0) {
