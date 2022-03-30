@@ -5,11 +5,6 @@ Implement both, but prioritize the normal one rather than the player auctions se
 Put the first in auctions-viewer, put the second in player-auctions-viewer.
 */
 
-function pageLoad() {
-    window.SB_Item_List = [];
-    window.search_settings = [true, true, false];
-}
-
 function loadOne() {
     document.getElementById("loadone").innerHTML = "Reload One";
     document.getElementById("loadall").innerHTML = "Load All";
