@@ -90,7 +90,6 @@ function search_map_title_lore(element, index) {
             includes.push([index,a]);
         }
     }
-    console.log(includes);
     return includes;
 }
 
@@ -104,15 +103,19 @@ function display_results(results) {
             better_results = better_results.concat(results[a]);
         }
         console.log(better_results);
-        const results_amount_original = results_amount;
         if (results_amount % 9 != 0) {
             results_amount += (9 - (results_amount % 9));
         }
         for (let i = 0; i < results_amount; i++) {
     		document.getElementById('inventoryview').innerHTML = document.getElementById('inventoryview').innerHTML + '<div class="inventoryslot"></div>';
         }
+		window.items = []
+		for (let i = 0; i < better_results.length; i++) {
+			window.items.push(window.SB_Item_List[better_results[i][0]]['auctions'][better_results[i][1]]);
+		}
         /*
-        for (let i = 0; i < results_amount_original; i++) {
+        for (let i = 0; i < better_results.length; i++) {
+		
             let command = "write_slot(" + JSON.stringify(json_inventory[i]) + ")"; This line needs to be rewritten.
 			document.getElementsByClassName("inventoryslot")[27+i].setAttribute("onmouseover", command);
 			document.getElementsByClassName("inventoryslot")[27+i].setAttribute("onmouseout", "document.getElementById('itemview').innerHTML = '';");
