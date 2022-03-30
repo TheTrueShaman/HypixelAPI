@@ -52,28 +52,31 @@ function search() {
         window.SB_Item_List = [];
     }
     window.search_input = document.getElementById("search_bar").value;
-    console.log(window.search_input);
-    const settings = JSON.stringify(window.search_settings);
-    let search_results = [];
-    if (settings == JSON.stringify([true, true, true])) {
-        console.log("Search 1");
-    } else if (settings == JSON.stringify([true, true, false])) {
-        console.log("Search 2");
-        search_results = window.SB_Item_List.map(search_map_title_lore);
-    } else if (settings == JSON.stringify([true, false, true])) {
-        console.log("Search 3");
-    } else if (settings == JSON.stringify([true, false, false])) {
-        console.log("Search 4");
-    } else if (settings == JSON.stringify([false, true, true])) {
-        console.log("Search 5");
-    } else if (settings == JSON.stringify([false, true, false])) {
-        console.log("Search 6");
+    if (window.search_input != '') {
+        console.log(window.search_input);
+        const settings = JSON.stringify(window.search_settings);
+        let search_results = [];
+       if (settings == JSON.stringify([true, true, true])) {
+            console.log("Search 1");
+        } else if (settings == JSON.stringify([true, true, false])) {
+            console.log("Search 2");
+            search_results = window.SB_Item_List.map(search_map_title_lore);
+        } else if (settings == JSON.stringify([true, false, true])) {
+            console.log("Search 3");
+        } else if (settings == JSON.stringify([true, false, false])) {
+            console.log("Search 4");
+        } else if (settings == JSON.stringify([false, true, true])) {
+            console.log("Search 5");
+        } else if (settings == JSON.stringify([false, true, false])) {
+            console.log("Search 6");
+        } else {
+            console.log("Search not possible.");
+        }
+        console.log(search_results);
+        display_results(search_results);
     } else {
-        console.log("Search not possible.");
+        document.getElementById('main').innerHTML = '';
     }
-    console.log(search_results);
-    display_results(search_results);
-    //Add search settings that allow you to search specifically name, lore, or both. Add things that can allow you to search
 }
 
 function search_map_title_lore(element, index) {
@@ -96,7 +99,7 @@ function display_results(results) {
         document.getElementById('main').innerHTML = '<div id="itemview"></div><div id="inventoryview"></div>';
         let results_amount = 0;
         for (let a = 1; a < results.length; a++) {
-            results_amount += results[a].lenght;
+            results_amount += results[a].length;
         }
         console.log(results_amount);
         if (results_amount % 9 != 0) {
