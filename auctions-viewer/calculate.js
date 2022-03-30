@@ -54,11 +54,12 @@ function search() {
     window.search_input = document.getElementById("search_bar").value;
     console.log(window.search_input);
     const settings = JSON.stringify(window.search_settings);
+    let search_results = [];
     if (settings == JSON.stringify([true, true, true])) {
         console.log("Search 1");
     } else if (settings == JSON.stringify([true, true, false])) {
         console.log("Search 2");
-        const search_results = window.SB_Item_List.map(search_map_title_lore);
+        search_results = window.SB_Item_List.map(search_map_title_lore);
     } else if (settings == JSON.stringify([true, false, true])) {
         console.log("Search 3");
     } else if (settings == JSON.stringify([true, false, false])) {
@@ -70,6 +71,7 @@ function search() {
     } else {
         console.log("Search not possible.");
     }
+    console.log(search_results);
     //Add search settings that allow you to search specifically name, lore, or both. Add things that can allow you to search
 }
 
@@ -85,4 +87,5 @@ function search_map_title_lore(element, index) {
             includes.append((index,a));
         }
     }
+    return includes;
 }
