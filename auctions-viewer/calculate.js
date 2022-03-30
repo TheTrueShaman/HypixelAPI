@@ -127,9 +127,106 @@ function draw_inventory() {
 	/*
 	for (let i = window.index; i < Math.min((better_results.length - window.index), 54 + window.index); i++) {
 		let command = "write_slot(" + JSON.stringify(json_inventory[i]) + ")"; This line needs to be rewritten.
-		document.getElementsByClassName("inventoryslot")[27+i].setAttribute("onmouseover", command);
-		document.getElementsByClassName("inventoryslot")[27+i].setAttribute("onmouseout", "document.getElementById('itemview').innerHTML = '';");
-		document.getElementsByClassName("inventoryslot")[27+i].innerHTML = draw_slot(json_inventory[i]);
+		document.getElementsByClassName("inventoryslot")[i].setAttribute("onmouseover", command);
+		document.getElementsByClassName("inventoryslot")[i].setAttribute("onmouseout", "document.getElementById('itemview').innerHTML = '';");
+		document.getElementsByClassName("inventoryslot")[i].innerHTML = draw_slot(json_inventory[i]);
 	}
 	*/
+}
+
+
+function write_slot(slot) {
+    if (slot.tag) {
+        let display = "";
+        let line = "";
+        let stylecodes = {
+            "§0": "color: #000000",
+            "§1": "color: #0000aa",
+            "§2": "color: #00aa00",
+            "§3": "color: #00aaaa",
+            "§4": "color: #aa0000",
+            "§5": "color: #aa00aa",
+            "§6": "color: #ffaa00",
+            "§7": "color: #aaaaaa",
+            "§8": "color: #555555",
+            "§9": "color: #5555ff",
+            "§a": "color: #55ff55",
+            "§b": "color: #55ffff",
+            "§c": "color: #ff5555",
+            "§d": "color: #ff55ff",
+            "§e": "color: #ffff55",
+            "§f": "color: #ffffff",
+            "§l": "font-weight:bold"
+        }
+        display = display + format_line(slot.tag.display.Name, stylecodes);
+        display = display + format_line("", stylecodes);
+        for (let i = 0; i < slot.tag.display.Lore.length; i++) {
+            display = display + format_line(slot.tag.display.Lore[i], stylecodes);
+        }
+        document.getElementById("itemview").innerHTML = display;
+    }
+}
+
+function format_line(line, stylecodes) {
+	let display_line = "<span class=\"loreline\">";
+	let where = line.search("§");
+	let style;
+	let styles = {};
+	let close = false;
+	let lineadd = false;
+	let y;
+	while (where != -1) {
+		y = 1;
+		styles = {};
+		while (stylecodes[line.slice(where+(2*(y-1)), where+(2*y))] != undefined) {
+			if (!(line.slice(where+(2*(y-1)), where+(2*y)) in styles)) {
+				let newstyle = line.slice(where+(2*(y-1)), where+(2*y))
+				styles[newstyle] = 1;
+			}
+			y = y + 1;
+		}
+	
+		if (close == true) {
+			display_line = display_line + line.slice(0, where) + "</span>";
+		} else {
+			close = true; 
+		}  
+        
+		let styles_string = "";
+		for (const property in styles) {
+			styles_string = styles_string + stylecodes[`${property}`] + "; ";
+		}
+		if (styles_string != "") {
+			display_line = display_line + "<span style=\"" + styles_string + "\">"
+		} else {
+		display_line = display_line + "<span>"
+		}
+        
+		line = line.slice(where + (2*(y-1)));
+		where = line.search("§");
+		lineadd = true;
+	}
+	if (lineadd == true) {
+		display_line = display_line + line + "</span>"; 
+	}
+	display_line = display_line + "</span>\n";
+	return display_line;
+}
+
+document.documentElement.addEventListener("mousemove", e => {
+	document.documentElement.style.setProperty('--mouse-x', e.clientX + "px");
+	document.documentElement.style.setProperty('--mouse-y', e.clientY + "px");
+});
+
+function draw_slot(slot) {
+	if (slot.id) {
+		let text = "<div class=\"item-icon icon-" + slot.id + "_0";
+		text = text + "\"></div>";
+		if (slot.Count != 1) {
+			text = text + "<div class=\"item-count\">" + slot.Count + "</div>";
+		}
+		return text;
+	} else {
+		return ""; 
+	}
 }
