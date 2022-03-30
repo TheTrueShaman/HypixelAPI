@@ -81,7 +81,7 @@ function search_map_title_lore(element, index) {
     const includes = [];
     const auctions = element["auctions"];
     const regex = new RegExp(window.search_input);
-    for (let a=0; a<1000; a++) {
+    for (let a=0; a<auctions.length; a++) {
         const auction = auctions[a];
         const text = (auction["item_lore"] + auction["item_name"]).replaceAll(/§([a-z]|[0-9])/g, '');
         if (text.search(regex) != -1) {
