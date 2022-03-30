@@ -72,12 +72,11 @@ function search() {
         console.log("Search not possible.");
     }
     console.log(search_results);
+    display_results(search_results);
     //Add search settings that allow you to search specifically name, lore, or both. Add things that can allow you to search
 }
 
 function search_map_title_lore(element, index) {
-    console.log(element);
-    console.log(index);
     const includes = [];
     const auctions = element["auctions"];
     const regex = new RegExp(window.search_input, 'i');
@@ -90,4 +89,26 @@ function search_map_title_lore(element, index) {
     }
     console.log(includes);
     return includes;
+}
+
+function display_results(results) {
+    if (results.length != 0) {
+        document.getElementById('main').innerHTML = '<div id="itemview"></div><div id="inventoryview"></div>';
+        let results_amount = 0;
+        for (let a = 1; a < results.length; a++) {
+            results_amount += results[a].lenght;
+        }
+        console.log(results_amount);
+        if (results_amount % 9 != 0) {
+            results_amount += (9 - (results_amount % 9));
+        }
+        console.log(results_amount);
+        /*
+        for (let a = 1; a < results.length; a++) {
+            for (let b = 1; b < results[a].length; b++) {
+            
+            }
+        }
+        */
+    }
 }
