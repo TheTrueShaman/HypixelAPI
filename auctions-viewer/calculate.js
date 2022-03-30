@@ -87,5 +87,6 @@ function search_map_title_lore(element, index) {
             includes.push((index,a));
         }
     }
+    console.log(includes);
     return includes;
 }
