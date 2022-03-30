@@ -39,7 +39,10 @@ async function getPage(page) {
 
 function settings(setting) {
     const id = "option" + setting.toString();
+    console.log(id);
+    console.log(window.search_settings[setting-1]);
     window.search_settings[setting-1] = !window.search_settings[setting-1];
+    console.log(window.search_settings[setting-1]);
     if (window.search_settings[setting-1] == "false") {
         document.getElementById(id).innerHTML = "Off"
     } else {
