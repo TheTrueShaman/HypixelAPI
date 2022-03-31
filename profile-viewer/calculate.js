@@ -13,8 +13,8 @@ async function getUser(username, key) {
     const uuidData = await fetch(uuidURL);
 	
     if (uuidData.ok == false) {
-    	console.log("Invalid Minecraft Username."); 
-	return 0;
+		console.log("Invalid Minecraft Username."); 
+		return 0;
     }
     const uuidjson = await uuidData.json();
     let uuid = uuidjson.uuid;
