@@ -218,6 +218,7 @@ document.documentElement.addEventListener("mousemove", e => {
 
 function draw_slot(slot) {
 	console.log('This does happen');
+	console.log(slot);
 	if (slot.id) {
 		let text = "<div class=\"item-icon icon-" + slot.id + "_0";
 		text = text + "\"></div>";
