@@ -123,7 +123,9 @@ function draw_inventory() {
 	for (let i = 0; i < Math.min((results_amount - window.index), 54); i++) {
 		document.getElementById('inventoryview').innerHTML = document.getElementById('inventoryview').innerHTML + '<div class="inventoryslot"></div>';
 	}
+	console.log(window.items.length - window.index);
 	for (let i = window.index; i < Math.min((window.items.length - window.index), 54 + window.index); i++) {
+		console.log(i);
 		let command = "write_slot(" + JSON.stringify(convertNbtToJson(window.items[i]['item_bytes'])) + ")";
 		document.getElementsByClassName("inventoryslot")[i].setAttribute("onmouseover", command);
 		document.getElementsByClassName("inventoryslot")[i].setAttribute("onmouseout", "document.getElementById('itemview').innerHTML = '';");
