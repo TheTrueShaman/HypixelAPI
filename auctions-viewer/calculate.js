@@ -125,7 +125,6 @@ function draw_inventory() {
 	}
 	console.log(window.items.length - window.index);
 	for (let i = window.index; i < Math.min((window.items.length - window.index), 54 + window.index); i++) {
-		console.log(i);
 		let command = "write_slot(" + JSON.stringify(convertNbtToJson(window.items[i]['item_bytes'])[0]) + ")";
 		document.getElementsByClassName("inventoryslot")[i].setAttribute("onmouseover", command);
 		document.getElementsByClassName("inventoryslot")[i].setAttribute("onmouseout", "document.getElementById('itemview').innerHTML = '';");
@@ -218,6 +217,7 @@ document.documentElement.addEventListener("mousemove", e => {
 });
 
 function draw_slot(slot) {
+	console.log('This does happen');
 	if (slot.id) {
 		let text = "<div class=\"item-icon icon-" + slot.id + "_0";
 		text = text + "\"></div>";
