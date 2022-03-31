@@ -123,7 +123,6 @@ function draw_inventory() {
 	for (let i = 0; i < Math.min((results_amount - window.index), 54); i++) {
 		document.getElementById('inventoryview').innerHTML = document.getElementById('inventoryview').innerHTML + '<div class="inventoryslot"></div>';
 	}
-	console.log(window.items.length - window.index);
 	for (let i = window.index; i < Math.min((window.items.length - window.index), 54 + window.index); i++) {
 		let command = "write_slot(" + JSON.stringify(convertNbtToJson(window.items[i]['item_bytes'])[0]) + ")";
 		document.getElementsByClassName("inventoryslot")[i].setAttribute("onmouseover", command);
@@ -217,8 +216,6 @@ document.documentElement.addEventListener("mousemove", e => {
 });
 
 function draw_slot(slot) {
-	console.log('This does happen');
-	console.log(slot);
 	if (slot.id) {
 		let text = "<div class=\"item-icon icon-" + slot.id + "_0";
 		text = text + "\"></div>";
@@ -240,4 +237,38 @@ function convertNbtToJson(t) {
 		console.log("Invalid input: couldn't parse nbt data");
 	}
 	return data;
+}
+
+function next() {
+	if (window.index + 54 < window.items.length) {
+		window.index += 54;
+		draw_inventory();
+		if (window.index > 0) {
+			document.getElementById('previous').innerHTML = 'Previous';
+		} else {
+			document.getElementById('previous').innerHTML = 'Not Possible';
+		}
+		if (window.index + 54 < window.items.length) {
+			document.getElementById('next').innerHTML = 'Next';
+		} else {
+			document.getElementById('next').innerHTML = 'Not Possible';
+		}
+	}
+}
+
+function previous() {
+	if (window.index > 0) {
+		window.index -= 54;
+		draw_inventory();
+		if (window.index > 0) {
+			document.getElementById('previous').innerHTML = 'Previous';
+		} else {
+			document.getElementById('previous').innerHTML = 'Not Possible';
+		}
+		if (window.index + 54 < window.items.length) {
+			document.getElementById('next').innerHTML = 'Next';
+		} else {
+			document.getElementById('next').innerHTML = 'Not Possible';
+		}
+	}
 }
