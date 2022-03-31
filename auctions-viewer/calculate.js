@@ -120,6 +120,7 @@ function draw_inventory() {
 	if (results_amount % 9 != 0) {
 		results_amount += (9 - (results_amount % 9));
 	}
+	document.getElementById('inventoryview').innerHTML = '';
 	for (let i = 0; i < Math.min((results_amount - window.index), 54); i++) {
 		document.getElementById('inventoryview').innerHTML = document.getElementById('inventoryview').innerHTML + '<div class="inventoryslot"></div>';
 	}
