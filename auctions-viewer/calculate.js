@@ -119,11 +119,11 @@ function better_stringify(item) {
 	let keys = Object.keys(item);
 	var stringified = "{"
 	var key;
-	for(var i = 0; i < keys.length; i++){
+	for(var i = 0; i < keys.length - 1; i++){
 		key = keys[i]
 		stringified += "\"" + key + "\"" + ":" + JSON.stringify(item[key]) + ",";
 	}
-	stringified += "}";
+	stringified += "\"" + key + "\"" + ":" + JSON.stringify(item[keys[keys.length - 1]) + "}";
 	console.log(item);
 	console.log(stringified);
 }
