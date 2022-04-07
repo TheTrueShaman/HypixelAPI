@@ -121,7 +121,7 @@ function better_stringify(item) {
 	var key;
 	for(var i = 0; i < keys.length; i++){
 		key = keys[i]
-		stringified += key + ":" + JSON.stringify(item[key]) + ",";
+		stringified += "\"" + key + "\"" + ":" + JSON.stringify(item[key]) + ",";
 	}
 	stringified += "}";
 	console.log(item);
