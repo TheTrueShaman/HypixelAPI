@@ -196,6 +196,7 @@ function format_line(line, stylecodes) {
 			y = y + 1;
 		}
 	
+		/*
 		console.log(display_line);
 		if (close == true) {
 			console.log("Hi");
@@ -203,7 +204,8 @@ function format_line(line, stylecodes) {
 		} else {
 			close = true; 
 		}  
-        
+        	*/
+	
 		let styles_string = "";
 		for (const property in styles) {
 			styles_string = styles_string + stylecodes[`${property}`] + "; ";
