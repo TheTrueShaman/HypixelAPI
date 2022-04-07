@@ -124,8 +124,7 @@ function better_stringify(item) {
 		stringified += "\"" + key + "\"" + ":" + JSON.stringify(item[key]) + ",";
 	}
 	stringified += "\"" + key + "\"" + ":" + JSON.stringify(item[keys[keys.length - 1]]) + "}";
-	console.log(item);
-	console.log(stringified);
+	return stringified;
 }
 
 function draw_inventory() {
@@ -138,8 +137,7 @@ function draw_inventory() {
 		document.getElementById('inventoryview').innerHTML = document.getElementById('inventoryview').innerHTML + '<div class="inventoryslot"></div>';
 	}
 	for (let i = window.index; i < Math.min((window.items.length - window.index), 54 + window.index); i++) {
-		let command = "write_slot(" + JSON.stringify(convertNbtToJson(window.items[i]['item_bytes'])[0]) + ")";
-		better_stringify(convertNbtToJson(window.items[i]['item_bytes'])[0]);
+		let command = "write_slot(" + better_stringify(convertNbtToJson(window.items[i]['item_bytes'])[0]) + ")";
 		document.getElementsByClassName("inventoryslot")[i].setAttribute("onmouseover", command);
 		document.getElementsByClassName("inventoryslot")[i].setAttribute("onmouseout", "document.getElementById('itemview').innerHTML = '';");
 		document.getElementsByClassName("inventoryslot")[i].innerHTML = draw_slot(convertNbtToJson(window.items[i]['item_bytes'])[0]);
