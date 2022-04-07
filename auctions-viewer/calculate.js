@@ -123,6 +123,7 @@ function better_stringify(item) {
 	}
 	stringified += "]";
 	console.log(item);
+	console.log(stringified);
 }
 
 function draw_inventory() {
