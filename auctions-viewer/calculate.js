@@ -115,6 +115,16 @@ function display_results(results) {
 	}
 }
 
+function better_stringify(item) {
+	let keys = Object.keys(item);
+	var stringified = "["
+	for(var i = 0; i < keys.length; i++){
+		stringified+=JSON.stringify(item[keys[i]])+",";
+	}
+	stringified += "]";
+	console.log(item);
+}
+
 function draw_inventory() {
 	let results_amount= window.items.length;
 	if (results_amount % 9 != 0) {
@@ -126,6 +136,7 @@ function draw_inventory() {
 	}
 	for (let i = window.index; i < Math.min((window.items.length - window.index), 54 + window.index); i++) {
 		let command = "write_slot(" + JSON.stringify(convertNbtToJson(window.items[i]['item_bytes'])[0]) + ")";
+		better_stringify(convertNbtToJson(window.items[i]['item_bytes'])[0]);
 		document.getElementsByClassName("inventoryslot")[i].setAttribute("onmouseover", command);
 		document.getElementsByClassName("inventoryslot")[i].setAttribute("onmouseout", "document.getElementById('itemview').innerHTML = '';");
 		document.getElementsByClassName("inventoryslot")[i].innerHTML = draw_slot(convertNbtToJson(window.items[i]['item_bytes'])[0]);
