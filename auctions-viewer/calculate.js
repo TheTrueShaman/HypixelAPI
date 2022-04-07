@@ -117,11 +117,13 @@ function display_results(results) {
 
 function better_stringify(item) {
 	let keys = Object.keys(item);
-	var stringified = "["
+	var stringified = "{"
+	var key;
 	for(var i = 0; i < keys.length; i++){
-		stringified+=JSON.stringify(item[keys[i]])+",";
+		key = keys[i]
+		stringified += key + ":" + JSON.stringify(item[key]) + ",";
 	}
-	stringified += "]";
+	stringified += "}";
 	console.log(item);
 	console.log(stringified);
 }
