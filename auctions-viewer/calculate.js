@@ -166,7 +166,7 @@ function write_slot(slot) {
 			"§d": "color: #ff55ff",
 			"§e": "color: #ffff55",
 			"§f": "color: #ffffff",
-			"§l": "font-weight:bold"
+			"§l": "font-weight:bold",
 			"§m": "text-decoration: line-through",
 			"§n": "text-decoration: underline",
 			"§o": "font-style: italic;",
