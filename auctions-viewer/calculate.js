@@ -197,8 +197,7 @@ function format_line(line, stylecodes) {
 			}
 			y = y + 1;
 		}
-	
-		console.log(display_line);
+		
 		if (close == true) {
 			console.log("Hi");
 			display_line = display_line + line.slice(0, where) + "</span>";
@@ -220,11 +219,12 @@ function format_line(line, stylecodes) {
 		line = line.slice(where + (2*(y-1)));
 		where = line.search("§");
 		lineadd = true;
-		console.log(display_line);
 	}
+	console.log(display_line);
 	if (lineadd == true) {
 		display_line = display_line + line + "</span>"; 
 	}
+	console.log(display_line);
 	display_line = display_line + "</span>\n";
 	return display_line;
 }
