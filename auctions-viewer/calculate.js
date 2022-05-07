@@ -115,6 +115,18 @@ function display_results(results) {
 	}
 }
 
+function better_stringify(item) {
+	let keys = Object.keys(item);
+	var stringified = "{"
+	var key;
+	for(var i = 0; i < keys.length - 1; i++){
+		key = keys[i]
+		stringified += "\"" + key + "\"" + ":" + JSON.stringify(item[key]) + ",";
+	}
+	stringified += "\"" + keys[keys.length - 1] + "\"" + ":" + JSON.stringify(item[keys[keys.length - 1]]) + "}";
+	return stringified;
+}
+
 function draw_inventory() {
 	let results_amount= window.items.length;
 	if (results_amount % 9 != 0) {
@@ -125,7 +137,7 @@ function draw_inventory() {
 		document.getElementById('inventoryview').innerHTML = document.getElementById('inventoryview').innerHTML + '<div class="inventoryslot"></div>';
 	}
 	for (let i = window.index; i < Math.min((window.items.length - window.index), 54 + window.index); i++) {
-		let command = "write_slot(" + JSON.stringify(convertNbtToJson(window.items[i]['item_bytes'])[0]) + ")";
+		let command = "write_slot(" + better_stringify(convertNbtToJson(window.items[i]['item_bytes'])[0]) + ")";
 		document.getElementsByClassName("inventoryslot")[i].setAttribute("onmouseover", command);
 		document.getElementsByClassName("inventoryslot")[i].setAttribute("onmouseout", "document.getElementById('itemview').innerHTML = '';");
 		document.getElementsByClassName("inventoryslot")[i].innerHTML = draw_slot(convertNbtToJson(window.items[i]['item_bytes'])[0]);
@@ -134,38 +146,43 @@ function draw_inventory() {
 
 
 function write_slot(slot) {
-    if (slot.tag) {
-        let display = "";
-        let line = "";
-        let stylecodes = {
-            "§0": "color: #000000",
-            "§1": "color: #0000aa",
-            "§2": "color: #00aa00",
-            "§3": "color: #00aaaa",
-            "§4": "color: #aa0000",
-            "§5": "color: #aa00aa",
-            "§6": "color: #ffaa00",
-            "§7": "color: #aaaaaa",
-            "§8": "color: #555555",
-            "§9": "color: #5555ff",
-            "§a": "color: #55ff55",
-            "§b": "color: #55ffff",
-            "§c": "color: #ff5555",
-            "§d": "color: #ff55ff",
-            "§e": "color: #ffff55",
-            "§f": "color: #ffffff",
-            "§l": "font-weight:bold"
-        }
-        display = display + format_line(slot.tag.display.Name, stylecodes);
-        display = display + format_line("", stylecodes);
-        for (let i = 0; i < slot.tag.display.Lore.length; i++) {
-            display = display + format_line(slot.tag.display.Lore[i], stylecodes);
-        }
-        document.getElementById("itemview").innerHTML = display;
-    }
+	if (slot.tag) {
+		let display = "";
+		let line = "";
+		let stylecodes = {
+			"§0": "color: #000000",
+			"§1": "color: #0000aa",
+			"§2": "color: #00aa00",
+			"§3": "color: #00aaaa",
+			"§4": "color: #aa0000",
+			"§5": "color: #aa00aa",
+			"§6": "color: #ffaa00",
+			"§7": "color: #aaaaaa",
+			"§8": "color: #555555",
+			"§9": "color: #5555ff",
+			"§a": "color: #55ff55",
+			"§b": "color: #55ffff",
+			"§c": "color: #ff5555",
+			"§d": "color: #ff55ff",
+			"§e": "color: #ffff55",
+			"§f": "color: #ffffff",
+			"§l": "font-weight:bold",
+			"§m": "text-decoration: line-through",
+			"§n": "text-decoration: underline",
+			"§o": "font-style: italic;",
+		}
+		display = display + format_line(slot.tag.display.Name, stylecodes);
+		display = display + format_line("", stylecodes);
+		for (let i = 0; i < slot.tag.display.Lore.length; i++) {
+			display = display + format_line(slot.tag.display.Lore[i], stylecodes);
+		}
+		document.getElementById("itemview").innerHTML = display;
+	}
 }
 
 function format_line(line, stylecodes) {
+	line = line.replaceAll('§k','');
+	line = line.replaceAll('§r','');
 	let display_line = "<span class=\"loreline\">";
 	let where = line.search("§");
 	let style;
@@ -183,13 +200,13 @@ function format_line(line, stylecodes) {
 			}
 			y = y + 1;
 		}
-	
+		
 		if (close == true) {
 			display_line = display_line + line.slice(0, where) + "</span>";
 		} else {
 			close = true; 
 		}  
-        
+	
 		let styles_string = "";
 		for (const property in styles) {
 			styles_string = styles_string + stylecodes[`${property}`] + "; ";
@@ -199,11 +216,12 @@ function format_line(line, stylecodes) {
 		} else {
 			display_line = display_line + "<span>"
 		}
-        
+        	
 		line = line.slice(where + (2*(y-1)));
 		where = line.search("§");
 		lineadd = true;
 	}
+
 	if (lineadd == true) {
 		display_line = display_line + line + "</span>"; 
 	}
