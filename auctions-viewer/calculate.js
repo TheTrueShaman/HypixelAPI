@@ -146,40 +146,44 @@ function draw_inventory() {
 
 
 function write_slot(slot) {
-    if (slot.tag) {
-        let display = "";
-        let line = "";
-        let stylecodes = {
-            "§0": "color: #000000",
-            "§1": "color: #0000aa",
-            "§2": "color: #00aa00",
-            "§3": "color: #00aaaa",
-            "§4": "color: #aa0000",
-            "§5": "color: #aa00aa",
-            "§6": "color: #ffaa00",
-            "§7": "color: #aaaaaa",
-            "§8": "color: #555555",
-            "§9": "color: #5555ff",
-            "§a": "color: #55ff55",
-            "§b": "color: #55ffff",
-            "§c": "color: #ff5555",
-            "§d": "color: #ff55ff",
-            "§e": "color: #ffff55",
-            "§f": "color: #ffffff",
-            "§l": "font-weight:bold"
-        }
-        display = display + format_line(slot.tag.display.Name, stylecodes);
-        display = display + format_line("", stylecodes);
-        for (let i = 0; i < slot.tag.display.Lore.length; i++) {
-            display = display + format_line(slot.tag.display.Lore[i], stylecodes);
-        }
-        document.getElementById("itemview").innerHTML = display;
-    }
+	if (slot.tag) {
+		let display = "";
+		let line = "";
+		let stylecodes = {
+			"§0": "color: #000000",
+			"§1": "color: #0000aa",
+			"§2": "color: #00aa00",
+			"§3": "color: #00aaaa",
+			"§4": "color: #aa0000",
+			"§5": "color: #aa00aa",
+			"§6": "color: #ffaa00",
+			"§7": "color: #aaaaaa",
+			"§8": "color: #555555",
+			"§9": "color: #5555ff",
+			"§a": "color: #55ff55",
+			"§b": "color: #55ffff",
+			"§c": "color: #ff5555",
+			"§d": "color: #ff55ff",
+			"§e": "color: #ffff55",
+			"§f": "color: #ffffff",
+			"§l": "font-weight:bold"
+			"§m": "text-decoration: line-through",
+			"§n": "text-decoration: underline",
+			"§o": "font-style: italic;",
+		}
+		display = display + format_line(slot.tag.display.Name, stylecodes);
+		display = display + format_line("", stylecodes);
+		for (let i = 0; i < slot.tag.display.Lore.length; i++) {
+			display = display + format_line(slot.tag.display.Lore[i], stylecodes);
+		}
+		document.getElementById("itemview").innerHTML = display;
+	}
 }
 
 function format_line(line, stylecodes) {
 	console.log(line);
 	line = line.replaceAll('§k','');
+	line = line.replaceAll('§r','');
 	let display_line = "<span class=\"loreline\">";
 	let where = line.search("§");
 	let style;
