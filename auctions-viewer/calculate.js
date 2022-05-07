@@ -181,7 +181,6 @@ function write_slot(slot) {
 }
 
 function format_line(line, stylecodes) {
-	console.log(line);
 	line = line.replaceAll('§k','');
 	line = line.replaceAll('§r','');
 	let display_line = "<span class=\"loreline\">";
@@ -192,7 +191,6 @@ function format_line(line, stylecodes) {
 	let lineadd = false;
 	let y;
 	while (where != -1) {
-		console.log(display_line);
 		y = 1;
 		styles = {};
 		while (stylecodes[line.slice(where+(2*(y-1)), where+(2*y))] != undefined) {
@@ -204,10 +202,8 @@ function format_line(line, stylecodes) {
 		}
 		
 		if (close == true) {
-			console.log("Hi");
 			display_line = display_line + line.slice(0, where) + "</span>";
 		} else {
-			console.log("Hello");
 			close = true; 
 		}  
 	
@@ -225,11 +221,10 @@ function format_line(line, stylecodes) {
 		where = line.search("§");
 		lineadd = true;
 	}
-	console.log(display_line);
+
 	if (lineadd == true) {
 		display_line = display_line + line + "</span>"; 
 	}
-	console.log(display_line);
 	display_line = display_line + "</span>\n";
 	return display_line;
 }
