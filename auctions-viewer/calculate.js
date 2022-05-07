@@ -179,6 +179,7 @@ function write_slot(slot) {
 
 function format_line(line, stylecodes) {
 	console.log(line);
+	line = line.replaceAll('§k','');
 	let display_line = "<span class=\"loreline\">";
 	let where = line.search("§");
 	let style;
