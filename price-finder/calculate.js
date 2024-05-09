@@ -1,10 +1,23 @@
 async function getAuctions(type) {
-	window.SB_Item_List = [];
-	window.SB_Item_List.push(await getAuctionsPage(0));
-	let pages = window.SB_Item_List[0]['totalPages']
+	let auctionsList = [];
+	auctionsList.push(await getAuctionsPage(0));
+	let pages = auctionsList[0]['totalPages']
 	for (let i = 1; i < pages; i++) {
-		window.SB_Item_List.push(await getAuctionsPage(i));
+		auctionsList.push(await getAuctionsPage(i));
 	}
+
+	let binList = [];
+	let item;
+	for (let i = 0; i < auctionsList.length; i++) {
+		item = auctionsList[i];
+		if (item['bin'] === false || item['claimed'] == true) {
+			continue;
+		}
+
+		binList.push({ name: item['item_name'], starting_bid: item['starting_bid'], rarity: item['tier']);
+	}
+
+	return binList;
 }
 
 async function getAuctionsPage(page) {
@@ -17,5 +30,5 @@ async function getAuctionsPage(page) {
 }
 
 async function getBazaar() {
-  //https://api.hypixel.net/v2/skyblock/bazaar
+	const bazaarData = await fetch('https://api.hypixel.net/v2/skyblock/bazaar');
 }
