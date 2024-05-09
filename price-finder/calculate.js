@@ -8,13 +8,15 @@ async function getAuctions(type) {
 
 	let binList = [];
 	let item;
-	for (let i = 0; i < auctionsList.length; i++) {
-		item = auctionsList[i];
-		if (item['bin'] === false || item['claimed'] == true) {
-			continue;
+	for (let a = 0; a < auctionsList.length; a++) {
+		for (let b = 0; b < auctionsList[a]['auctions'].length; b++;) {
+			item = auctionsList[a]['auctions'][b];
+			if (item['bin'] === false || item['claimed'] == true) {
+				continue;
+			}
+	
+			binList.push({ name: item['item_name'], price: item['starting_bid'], rarity: item['tier']});
 		}
-
-		binList.push({ name: item['item_name'], price: item['starting_bid'], rarity: item['tier']});
 	}
 
 	return binList;
