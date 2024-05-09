@@ -11,11 +11,13 @@ async function getAuctions(type) {
 	for (let a = 0; a < auctionsList.length; a++) {
 		for (let b = 0; b < auctionsList[a]['auctions'].length; b++) {
 			item = auctionsList[a]['auctions'][b];
-			if (item['bin'] === false || item['claimed'] == true) {
+			if (item['bin'] === false || item['claimed'] === true) {
 				continue;
 			}
+
+			let bytes = convertNbtToJson(item['bytes'])
 	
-			binList.push({ name: item['item_name'], price: item['starting_bid'], rarity: item['tier']});
+			binList.push({ id: bytes[0].tag.ExtraAttributes.id, name: item['item_name'], price: item['starting_bid'], rarity: item['tier']});
 		}
 	}
 
@@ -41,3 +43,15 @@ async function getBazaar() {
 
 	return bazaarList;
 }
+
+function convertNbtToJson(t) {
+	let data;
+	try {
+		const n=Uint8Array.from(atob(t),t=>t.charCodeAt(0)),a=new Zlib.Gunzip(n).decompress();
+		nbt.parse(a,function(t,n){if(t)throw t;data=n})
+	} catch(t) {
+		console.log("Invalid input: couldn't parse nbt data");
+	}
+	return data;
+}
+
