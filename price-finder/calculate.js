@@ -9,7 +9,7 @@ async function getAuctions(type) {
 	let binList = [];
 	let item;
 	for (let a = 0; a < auctionsList.length; a++) {
-		for (let b = 0; b < auctionsList[a]['auctions'].length; b++;) {
+		for (let b = 0; b < auctionsList[a]['auctions'].length; b++) {
 			item = auctionsList[a]['auctions'][b];
 			if (item['bin'] === false || item['claimed'] == true) {
 				continue;
