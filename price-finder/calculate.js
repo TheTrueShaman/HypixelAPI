@@ -14,7 +14,7 @@ async function getAuctions(type) {
 			continue;
 		}
 
-		binList.push({ name: item['item_name'], starting_bid: item['starting_bid'], rarity: item['tier']);
+		binList.push({ name: item['item_name'], price: item['starting_bid'], rarity: item['tier']});
 	}
 
 	return binList;
@@ -31,4 +31,11 @@ async function getAuctionsPage(page) {
 
 async function getBazaar() {
 	const bazaarData = await fetch('https://api.hypixel.net/v2/skyblock/bazaar');
+
+	let bazaarList = [];
+	for (product in bazaarData['products']) {
+		bazaarList.push({ id: product['quick_status']['productId'], price: product['quick_status']['buyPrice']});
+	}
+
+	return bazaarList;
 }
