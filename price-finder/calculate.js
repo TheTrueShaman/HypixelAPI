@@ -35,7 +35,7 @@ async function getAuctionsPage(page) {
 
 async function getBazaar() {
 	const bazaarData = await fetch('https://api.hypixel.net/v2/skyblock/bazaar');
-	const bazaarJSON = await auctionPageData.json();
+	const bazaarJSON = await bazaarData.json();
 
 	let bazaarList = [];
 	for (product in JSON['products']) {
