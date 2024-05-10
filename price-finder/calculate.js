@@ -27,7 +27,7 @@ async function getAuctions(type) {
 	let itemPriceList = {}
 
 	for (let i = 0; i < binList.length; i++) {
-		item = binlist[i];
+		item = binList[i];
 		if (itemPriceList[item['id']]) {
 			if (itemPriceList[item['id']].price > item.price) {
 				continue;
