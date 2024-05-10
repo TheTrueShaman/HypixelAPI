@@ -33,7 +33,7 @@ async function getAuctions(type) {
 				continue;
 			}
 			
-			if (itemPriceList[item['id']] === 'PET') {
+			if (item.id === 'PET') {
 				// TODO
 				continue; // For now
 			}
@@ -59,7 +59,7 @@ async function getBazaar() {
 	const bazaarJSON = await bazaarData.json();
 
 	let bazaarList = [];
-	for (product in JSON['products']) {
+	for (product in bazaarJSON['products']) {
 		bazaarList.push({ id: product['quick_status']['productId'], price: product['quick_status']['buyPrice']});
 	}
 
