@@ -34,8 +34,8 @@ async function getAuctions(type) {
 			}
 			
 			if (item.id === 'PET') {
-				// TODO
-				continue; // For now
+				// Pets are not currently supported
+				continue;
 			}
 		}
 
@@ -76,7 +76,7 @@ async function loadAll() {
 	Object.assign(finalTable, bazaarList);
 
 	window.finalTable = finalTable;
-	document.getElementByID("warning").style.display = "none";
+	document.getElementById("warning").style.display = "none";
 	console.log(finalTable);
 }
 
