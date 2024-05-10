@@ -68,6 +68,18 @@ async function getBazaar() {
 	return bazaarList;
 }
 
+async function getItems() {
+	const itemsData = await fetch('https://api.hypixel.net/v2/resources/skyblock/items');
+	const itemJSON = await itemData.json();
+
+	let itemList;
+	for (item in itemJSON.items) {
+		itemList[item['name']] = item['id'];
+	}
+	
+	return itemList;
+}
+
 async function loadAll() {
 	let finalTable = {};
 	let auctionsList = await getAuctions();
