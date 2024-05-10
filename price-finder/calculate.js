@@ -81,6 +81,20 @@ async function loadAll() {
 
 loadAll();
 
+function search() {
+	if (!window.finalTable) {
+	    return;
+	}
+	
+	window.search_input = document.getElementById("search_bar").value;
+    	if (window.search_input != '') {
+		
+	} else {
+		document.getElementById('main').innerHTML = '';
+	}
+}
+
+
 function convertNbtToJson(t) {
 	let data;
 	try {
