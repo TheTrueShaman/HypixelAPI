@@ -76,6 +76,7 @@ async function loadAll() {
 	Object.assign(finalTable, bazaarList);
 
 	window.finalTable = finalTable;
+	document.getElementByID("warning").style.display = "none";
 	console.log(finalTable);
 }
 
