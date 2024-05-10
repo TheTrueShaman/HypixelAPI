@@ -86,8 +86,10 @@ async function loadAll() {
 	Object.assign(finalTable, auctionsList);
 	let bazaarList = await getBazaar();
 	Object.assign(finalTable, bazaarList);
+	let nameToId = await getItems();
 
 	window.finalTable = finalTable;
+	window.nameToId = nameToId;
 	document.getElementById("warning").style.display = "none";
 	console.log(finalTable);
 }
@@ -101,7 +103,20 @@ function search() {
 	
 	window.search_input = document.getElementById("search_bar").value;
     	if (window.search_input != '') {
-		
+		const searchItems = window.search_input.split('; ');
+		let costs = {};
+		let item;
+		for (let i = 0; i < searchItems.length; i++) {
+			item = searchItems[i];
+			if (window.finalTable[item]) {
+				costs[item] = window.finalTable[item].price;
+			} else if (window.nameToId[item]) {
+				costs[item] = window.finalTable[window.nameToId[item]].price;
+			} else {
+				console.warn("No price found for: " + item);
+			}
+		}
+		console.log(costs);
 	} else {
 		document.getElementById('main').innerHTML = '';
 	}
