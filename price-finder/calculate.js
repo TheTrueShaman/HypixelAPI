@@ -58,12 +58,22 @@ async function getBazaar() {
 	const bazaarData = await fetch('https://api.hypixel.net/v2/skyblock/bazaar');
 	const bazaarJSON = await bazaarData.json();
 
-	let bazaarList = [];
-	for (product in bazaarJSON['products']) {
-		bazaarList.push({ id: product['quick_status']['productId'], price: product['quick_status']['buyPrice']});
+	let bazaarList = {};
+	let product;
+	for (productKey in bazaarJSON['products']) {
+		product = bazaarJSON['products'][productKey];
+		bazaarList[product['quick_status']['productId']] = {price: product['quick_status']['buyPrice']};
 	}
 
 	return bazaarList;
+}
+
+function loadAll() {
+	let finalTable = {};
+	getAuctions().then((auctionsList) => {Object.assign(finalTable, auctionsList)});
+	getBazaar().then((bazaarList) => {Object.assign(finalTable, bazaarList)});
+
+	console.log(finalTable);
 }
 
 function convertNbtToJson(t) {
