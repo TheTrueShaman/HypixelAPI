@@ -16,15 +16,33 @@ async function getAuctions(type) {
 			}
 
 			let bytes = convertNbtToJson(item['item_bytes'])
-      if (!bytes) {
-        continue;
-      }
+			if (!bytes) {
+				continue;
+      			}
 	
 			binList.push({ id: bytes[0].tag.ExtraAttributes.id, name: item['item_name'], price: item['starting_bid'], rarity: item['tier']});
 		}
 	}
 
-	return binList;
+	let itemPriceList = {}
+
+	for (let i = 0; i < binList.length; i++) {
+		item = binlist[i];
+		if (itemPriceList[item['id']]) {
+			if (itemPriceList[item['id']].price > item.price) {
+				continue;
+			}
+			
+			if (itemPriceList[item['id']] === 'PET') {
+				// TODO
+				continue; // For now
+			}
+		}
+
+		itemPriceList[item['id']] = {name: item['name'], price: item['price']};
+	}
+
+	return itemPriceList;
 }
 
 async function getAuctionsPage(page) {
