@@ -74,8 +74,8 @@ async function getItems() {
 
 	let itemList = {};
 	let item;
-	for (let i = 0; i < itemJSON.length; i++) {
-		item = itemJSON[i];
+	for (let i = 0; i < itemJSON.items.length; i++) {
+		item = itemJSON['items'][i];
 		itemList[item['name']] = item['id'];
 	}
 	
