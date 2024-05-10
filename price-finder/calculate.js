@@ -68,13 +68,18 @@ async function getBazaar() {
 	return bazaarList;
 }
 
-function loadAll() {
+async function loadAll() {
 	let finalTable = {};
-	getAuctions().then((auctionsList) => {Object.assign(finalTable, auctionsList)});
-	getBazaar().then((bazaarList) => {Object.assign(finalTable, bazaarList)});
+	let auctionsList = getAuctions();
+	Object.assign(finalTable, auctionsList);
+	let bazaarList = getBazaar();
+	Object.assign(finalTable, bazaarList);
 
+	window.finalTable = finalTable;
 	console.log(finalTable);
 }
+
+loadAll();
 
 function convertNbtToJson(t) {
 	let data;
