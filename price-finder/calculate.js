@@ -70,9 +70,9 @@ async function getBazaar() {
 
 async function loadAll() {
 	let finalTable = {};
-	let auctionsList = getAuctions();
+	let auctionsList = await getAuctions();
 	Object.assign(finalTable, auctionsList);
-	let bazaarList = getBazaar();
+	let bazaarList = await getBazaar();
 	Object.assign(finalTable, bazaarList);
 
 	window.finalTable = finalTable;
