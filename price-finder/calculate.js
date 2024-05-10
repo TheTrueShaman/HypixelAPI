@@ -70,7 +70,7 @@ async function getBazaar() {
 
 async function getItems() {
 	const itemsData = await fetch('https://api.hypixel.net/v2/resources/skyblock/items');
-	const itemJSON = await itemData.json();
+	const itemJSON = await itemsData.json();
 
 	let itemList;
 	for (item in itemJSON.items) {
