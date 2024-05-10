@@ -73,7 +73,9 @@ async function getItems() {
 	const itemJSON = await itemsData.json();
 
 	let itemList = {};
-	for (item in itemJSON.items) {
+	let item;
+	for (let i = 0; i < itemJSON.length; i++) {
+		item = itemJSON[i];
 		itemList[item['name']] = item['id'];
 	}
 	
