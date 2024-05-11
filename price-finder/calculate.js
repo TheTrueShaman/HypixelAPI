@@ -131,7 +131,7 @@ function search() {
 				itemName = window.nameToId[itemName];
 			}
 			
-			costs[inputName] = window.finalTable[itemName].price * mult;
+			costs[inputName] = Math.round(1000 * window.finalTable[itemName].price * mult) / 1000; // Round to 3 decimal places
 		}
 		displayResults(costs);
 	} else {
@@ -144,8 +144,8 @@ function displayResults(results) {
 	let sum = 0;
 	console.log(results);
 	for (result in results) {
-		sum += results[result].price;
-		html += '<tr><td>' + result + '</td><td>' + results[result].price + ' </td></tr>';
+		sum += results[result];
+		html += '<tr><td>' + result + '</td><td>' + results[result] + ' </td></tr>';
 	}
 	html += '<tr><td>Total</td><td>' + sum + ' </td></tr></table>';
 	document.getElementById('main').innerHTML = html;
