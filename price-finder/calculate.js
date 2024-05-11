@@ -106,16 +106,16 @@ function search() {
 	window.search_input = document.getElementById("search_bar").value;
     	if (window.search_input != '') {
 		const searchItems = window.search_input.split('; ');
-		const regex = /^(\d+?)?x ?(.+)$/;
+		const regex = /^((\d+?)x)? ?(.+)$/;
 		let costs = {};
 		for (let i = 0; i < searchItems.length; i++) {
 			let inputName = searchItems[i];
 			let found = inputName.match(regex);
 			let mult = 1;
-			if (found[1]) {
-				mult = parseInt(found[1].slice(0,-1));
+			if (found[2]) {
+				mult = parseInt(found[2]);
 			}
-			let itemName = found[2];
+			let itemName = found[3];
 			
 			if (!window.finalTable[itemName] && !window.nameToId[itemName]) {
 				console.warn("No price found for: " + itemName);
@@ -140,8 +140,15 @@ function search() {
 }
 
 function displayResults(results) {
+	let html = '<table><tr><th>Item</th><th>Cost</th></tr>';
+	let sum = 0;
 	console.log(results);
-	document.getElementById('main').innerHTML = '';
+	for (result in results) {
+		sum += results[result].price;
+		html += '<tr><td>' + result '</td><td>' + results[result].price + ' </td></tr>';
+	}
+	html += '<tr><td>Total</td><td>' + sum + ' </td></tr></table>';
+	document.getElementById('main').innerHTML = html;
 	return;
 }
 
