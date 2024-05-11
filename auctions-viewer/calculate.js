@@ -29,7 +29,7 @@ async function getAuctions(type) {
 }
 
 async function getPage(page) {
-	let auctionsURL = new URL('https://api.hypixel.net/skyblock/auctions')
+	let auctionsURL = new URL('https://api.hypixel.net/v2/skyblock/auctions')
 	auctionsURL.searchParams.set('page', page);
 	const auctionPageData = await fetch(auctionsURL);
 	const auctionPageJSON = await auctionPageData.json();

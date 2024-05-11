@@ -33,7 +33,7 @@ async function getUser(username, key) {
     }
 
     
-    let profileURL = new URL('https://api.hypixel.net/skyblock/profiles')
+    let profileURL = new URL('https://api.hypixel.net/v2/skyblock/profiles')
     profileURL.searchParams.set('key', key);
     profileURL.searchParams.set('uuid', uuid);
     const profiledata = await fetch(profileURL);

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Skyblock Profile Viewer</title>
+    <title>Skyblock Price Calculator</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style> 
@@ -31,17 +31,39 @@
       input:valid {
         border: 2px solid black;
       }
+
+      table {
+        border-collapse: collapse;
+      }
+      
+      td, th {
+        border: 1px solid #000000;
+        text-align: left;
+        padding: 0.5em;
+      }
     </style>
     <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
   </head>
   <body>
+    <script src="nbt.js"></script>
     <script src="calculate.js"></script>
     
     <div class="header">
       <h1>Skyblock Price Calculator</h1>
     </div>
-
-    <div id="main"></div>
+    <br>
+    <div id="warning" style="display:block; text-align: center;">
+      <h3 style="color: darkred">The data is currently loading!</h3>
+    </div>
+    
+    <div style="display:flex;">
+      <div id="search" style="display: flex; width:100%;">
+        <input type="text" id="search_bar" style="width:70%; display: inline-block; outline: none; margin-left:40px; margin-right:40px; font-size: 1.5em"><button style="width:20%; display: inline-block;" onclick="search()">Search</button>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div id="main" style="margin:40px;"></div>
     
   </body>
 </html>
