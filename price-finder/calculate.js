@@ -106,22 +106,32 @@ function search() {
 	window.search_input = document.getElementById("search_bar").value;
     	if (window.search_input != '') {
 		const searchItems = window.search_input.split('; ');
+		const regex = /^(\d+?x)? ?(.+)$/;
 		let costs = {};
-		let item;
 		for (let i = 0; i < searchItems.length; i++) {
-			item = searchItems[i];
-			if (window.finalTable[item]) {
-				costs[item] = window.finalTable[item].price;
-			} else if (window.nameToId[item]) {
-				costs[item] = window.finalTable[window.nameToId[item]].price;
+			let inputName = searchItems[i];
+			let found = inputName.match(regex);
+			let mult = found[1];
+			let itemName = found[2];
+			
+			if (window.finalTable[itemName]) {
+				costs[inputName] = window.finalTable[itemName].price;
+			} else if (window.nameToId[itemName]) {
+				costs[inputName] = window.finalTable[window.nameToId[itemName]].price;
 			} else {
 				console.warn("No price found for: " + item);
 			}
 		}
-		console.log(costs);
+		displayResults(costs);
 	} else {
 		document.getElementById('main').innerHTML = '';
 	}
+}
+
+function displayResults(results) {
+	console.log(results);
+	document.getElementById('main').innerHTML = '';
+	return;
 }
 
 
