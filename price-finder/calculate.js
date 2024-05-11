@@ -111,17 +111,20 @@ function search() {
 		for (let i = 0; i < searchItems.length; i++) {
 			let inputName = searchItems[i];
 			let found = inputName.match(regex);
-			let mult = parseInt(found[1] || 1);
+			let mult = 1;
+			if (found[1]) {
+				mult = parseInt(found[1].slice(0,-1));
+			}
 			let itemName = found[2];
 			
 			if (!window.finalTable[itemName] && !window.nameToId[itemName]) {
-				console.warn("No price found for: " + item);
+				console.warn("No price found for: " + itemName);
 				continue;
 			}
 
 			if (window.nameToId[itemName]) {
 				if (!window.finalTable[window.nameToId[itemName]]) {
-					console.warn("No price found for: " + item);
+					console.warn("No price found for: " + itemName);
 					continue;
 				}
 				
