@@ -111,7 +111,7 @@ function search() {
 		for (let i = 0; i < searchItems.length; i++) {
 			let inputName = searchItems[i];
 			let found = inputName.match(regex);
-			let mult = parseInt(found[1]);
+			let mult = parseInt(found[1] || 1);
 			let itemName = found[2];
 			
 			if (!window.finalTable[itemName] && !window.nameToId[itemName]) {
