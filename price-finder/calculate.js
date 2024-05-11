@@ -145,7 +145,7 @@ function displayResults(results) {
 	console.log(results);
 	for (result in results) {
 		sum += results[result].price;
-		html += '<tr><td>' + result '</td><td>' + results[result].price + ' </td></tr>';
+		html += '<tr><td>' + result + '</td><td>' + results[result].price + ' </td></tr>';
 	}
 	html += '<tr><td>Total</td><td>' + sum + ' </td></tr></table>';
 	document.getElementById('main').innerHTML = html;
